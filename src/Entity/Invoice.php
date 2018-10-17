@@ -19,6 +19,8 @@ final class Invoice
     private $invoiceNumber;
     /** @var InvoiceItem[] */
     private $items;
+    /** @var Paid|null */
+    private $paid;
     /** @var Money */
     private $subtotal;
     /** @var Money */
@@ -87,6 +89,18 @@ final class Invoice
     public function setItems(array $items): Invoice
     {
         $this->items = $items;
+
+        return $this;
+    }
+
+    public function getPaid(): ?Paid
+    {
+        return $this->paid;
+    }
+
+    public function setPaid(Paid $paid): Invoice
+    {
+        $this->paid = $paid;
 
         return $this;
     }
