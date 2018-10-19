@@ -12,7 +12,7 @@ final class InsertInvoice extends AbstractInvoice implements InsertInvoiceInterf
     {
         $this->totalInvoice->handle($invoice); // critical so we don't save the wrong values
 
-        $sql = $this->sql($invoice);
+        $this->persist($invoice);
 
         $items = $invoice->getItems();
         foreach ($items as $item) {
@@ -22,10 +22,22 @@ final class InsertInvoice extends AbstractInvoice implements InsertInvoiceInterf
         return true;
     }
 
-    private function sql(Invoice $invoice): string
+    private function persist(Invoice $invoice)
     {
-        $sql = '';
+        $data = [
+            'invoice_date' => $invoice->getInvoiceDate()->format('m-d-Y'),
+            'invoice_number' => $invoice->getInvoiceNumber(),
+            'subtotal' => json_encode($invoice->getSubtotal()),
+            'tax_rate' => $invoice->getTaxRate(),
+            'taxes' => json_encode($invoice->getTaxes()),
+            'total' => json_encode($invoice->getTotal()),
+        ];
+        $response = $this->connection->insert('invoices', $data);
+        if (1 === $response) {
+            $id = $this->connection->lastInsertId();
+            $invoice->setId($id);
+        } else {
 
-        return $sql;
+        }
     }
 }

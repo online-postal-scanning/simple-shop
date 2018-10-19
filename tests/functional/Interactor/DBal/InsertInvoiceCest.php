@@ -19,7 +19,6 @@ class InsertInvoiceCest
     /** @var InsertInvoice */
     private $insertInvoice;
 
-
     public function _before(FunctionalTester $I)
     {
         $this->connection = $I->getDBalConnection();
@@ -45,11 +44,9 @@ class InsertInvoiceCest
             ->setItems($items)
             ->setTaxRate(.065);
         $this->insertInvoice->insert($invoice);
-
         $invoiceData = $this->connection->fetchAll('SELECT * FROM invoices');
         $invoiceItemsData = $this->connection->fetchAll('SELECT * FROM invoice_items');
-
-        $I->assertSame($this->expectedInvoiceData(), $invoiceData);
+        $I->assertEquals($this->expectedInvoiceData(), $invoiceData);
         $I->assertSame($this->expectedInvoiceItemsData(), $invoiceItemsData);
     }
 
@@ -57,22 +54,13 @@ class InsertInvoiceCest
     {
         return [
             [
-                'id' => 1,
-                'amount' => '{"amount":"2499","currency":"USD"}',
-                'description' => "Monthly subscription",
-                'invoice_id' => 1,
-                'is_taxable' => 1,
-                'quantity' => null,
-                'total_amount' => '{"amount":"2499","currency":"USD"}',
-            ],
-            [
-                'id' => 2,
-                'amount' => '{"amount":"249","currency":"USD"}',
-                'description' => "Service Fee",
-                'invoice_id' => 1,
-                'is_taxable' => 0,
-                'quantity' => null,
-                'total_amount' => '{"amount":"249","currency":"USD"}',
+                'invoice_date'   => '10-19-2018',
+                'invoice_number' => '42',
+                'id'             => '1',
+                'subtotal'       => '{"amount":"2748","currency":"USD"}',
+                'taxes'          => '{"amount":"162","currency":"USD"}',
+                'total'          => '{"amount":"2910","currency":"USD"}',
+                'tax_rate'       => '0.065',
             ],
         ];
     }
@@ -80,7 +68,24 @@ class InsertInvoiceCest
     private function expectedInvoiceItemsData(): array
     {
         return [
-
+            [
+                'id'           => '1',
+                'amount'       => '{"amount":"2499","currency":"USD"}',
+                'description'  => "Monthly subscription",
+                'invoice_id'   => '1',
+                'is_taxable'   => '1',
+                'quantity'     => null,
+                'total_amount' => '{"amount":"2499","currency":"USD"}',
+            ],
+            [
+                'id'           => '2',
+                'amount'       => '{"amount":"249","currency":"USD"}',
+                'description'  => "Service Fee",
+                'invoice_id'   => '1',
+                'is_taxable'   => '0',
+                'quantity'     => null,
+                'total_amount' => '{"amount":"249","currency":"USD"}',
+            ],
         ];
     }
 }

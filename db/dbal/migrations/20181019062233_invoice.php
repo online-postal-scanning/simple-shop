@@ -35,6 +35,7 @@ class Invoice extends AbstractMigration
             ->addColumn('invoice_date', 'date')
             ->addColumn('invoice_number', 'string', ['limit' => 100])
             ->addColumn('subtotal', 'text')
+            ->addColumn('tax_rate', 'float')
             ->addColumn('taxes', 'text')
             ->addColumn('total', 'text')
             ->create();
