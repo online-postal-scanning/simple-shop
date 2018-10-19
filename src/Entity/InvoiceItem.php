@@ -12,6 +12,8 @@ final class InvoiceItem
     /** @var string */
     private $description;
     /** @var mixed */
+    private $id;
+    /** @var mixed */
     private $invoiceId;
     /** @var bool */
     private $isTaxable;
@@ -40,6 +42,18 @@ final class InvoiceItem
     public function setDescription(string $description): InvoiceItem
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function setId($id)
+    {
+        $this->id = $id;
 
         return $this;
     }

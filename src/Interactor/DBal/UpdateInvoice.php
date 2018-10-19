@@ -6,7 +6,7 @@ namespace IamPersistent\SimpleShop\Interactor\DBal;
 use IamPersistent\SimpleShop\Entity\Invoice;
 use IamPersistent\SimpleShop\Interactor\UpdateInvoiceInterface;
 
-final class UpdateInvoice extends DBalCommon implements UpdateInvoiceInterface
+final class UpdateInvoice extends AbstractInvoice implements UpdateInvoiceInterface
 {
 
     public function update(Invoice $invoice): bool

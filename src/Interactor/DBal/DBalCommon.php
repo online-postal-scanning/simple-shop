@@ -7,6 +7,7 @@ use Doctrine\DBAL\Connection;
 
 abstract class DBalCommon
 {
+    /** @var Connection */
     protected $connection;
 
     public function __construct(Connection $connection)

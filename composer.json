@@ -5,13 +5,17 @@
   "keywords": ["ecommerce"],
   "license": "MIT",
   "require": {
+    "ext-pdo": "*",
     "moneyphp/money": "^3.0@dev",
     "php": ">=7.2",
     "psr/container": "^1.0@dev",
-    "league/omnipay": "^3"
+    "league/omnipay": "^3",
+    "robmorgan/phinx": "dev-master",
+    "doctrine/dbal": "^2.9@dev"
   },
   "require-dev": {
-    "codeception/codeception": "^2.4"
+    "codeception/codeception": "^2.4",
+    "ext-yaml": "*"
   },
   "repositories": {
   },
