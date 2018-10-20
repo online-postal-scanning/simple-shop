@@ -1,8 +1,9 @@
 <?php
 
+use Phinx\Db\Adapter\MysqlAdapter;
 use Phinx\Migration\AbstractMigration;
 
-class Invoice extends AbstractMigration
+class Paid extends AbstractMigration
 {
     /**
      * Change Method.
@@ -31,14 +32,10 @@ class Invoice extends AbstractMigration
      */
     public function change()
     {
-        $this->table('invoices')
-            ->addColumn('invoice_date', 'date')
-            ->addColumn('invoice_number', 'string', ['limit' => 100])
-            ->addColumn('paid_id', 'integer', ['signed' => false, 'null' => true])
-            ->addColumn('subtotal', 'text')
-            ->addColumn('tax_rate', 'float')
-            ->addColumn('taxes', 'text')
-            ->addColumn('total', 'text')
+        $this->table('paid')
+            ->addColumn('authorization_code', 'string', ['limit' => 255])
+            ->addColumn('date', 'date')
+            ->addColumn('card_id', 'integer', ['signed' => false, 'null' => false])
             ->create();
-    }
+   }
 }

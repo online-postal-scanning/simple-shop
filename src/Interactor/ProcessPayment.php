@@ -25,9 +25,8 @@ final class ProcessPayment
 
     public function handle(Invoice $invoice, CreditCard $card)
     {
-        $amount = $invoice->getTotal();
         $options = $this->extractCreditCardOptions($card);
-        $options['amount'] = $this->moneyFormatter->format($amount);
+        $options['amount'] = $invoice->getTotal();
 
         try {
             $response = $this->gateway->purchase($options)->send();
