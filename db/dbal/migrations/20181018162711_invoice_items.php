@@ -37,7 +37,7 @@ class InvoiceItems extends AbstractMigration
             ->addColumn('description', 'string', ['limit' => 255])
             ->addColumn('invoice_id', 'integer', ['signed' => false, 'null' => false])
             ->addColumn('is_taxable', 'boolean', ['null' => false, 'signed' => false, 'default' => 0])
-            ->addColumn('quantity', 'integer', ['signed' => false, 'limit' => MysqlAdapter::INT_SMALL])
+            ->addColumn('quantity', 'integer', ['null' => true, 'signed' => false, 'limit' => MysqlAdapter::INT_SMALL])
             ->addColumn('total_amount', 'text')
             ->create();
    }

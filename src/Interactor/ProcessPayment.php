@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace IamPersistent\SimpleShop\Interactor;
 
+use DateTime;
 use Exception;
 use IamPersistent\SimpleShop\Entity\CreditCard;
 use IamPersistent\SimpleShop\Entity\Invoice;
@@ -35,7 +36,9 @@ final class ProcessPayment
             if ($response->isSuccessful()) {
                 $paid = (new Paid())
                     ->setAmount($total)
-                    ->setAuthorizationCode($response->getAuthorizationCode());
+                    ->setAuthorizationCode($response->getAuthorizationCode())
+                    ->setCard($card)
+                    ->setDate(new DateTime());
                 $invoice->setPaid($paid);
                 $this->insertInvoice->insert($invoice);
             } elseif ($response->isRedirect()) {

@@ -28,7 +28,7 @@ final class InsertInvoice extends AbstractInvoice implements InsertInvoiceInterf
         $data = [
             'amount' => json_encode($paid->getAmount()),
             'authorization_code' => $paid->getAuthorizationCode(),
-            'date'               => $paid->getDate()->format('m-d-Y'),
+            'date'               => $paid->getDate()->format('Y-m-d'),
             'card_id'            => $paid->getCard()->getId(),
         ];
         $response = $this->connection->insert('paid', $data);
@@ -39,7 +39,7 @@ final class InsertInvoice extends AbstractInvoice implements InsertInvoiceInterf
         $paid->setId($paidId);
 
         $data = [
-            'invoice_date' => $invoice->getInvoiceDate()->format('m-d-Y'),
+            'invoice_date' => $invoice->getInvoiceDate()->format('Y-m-d'),
             'invoice_number' => $invoice->getInvoiceNumber(),
             'paid_id' => $paidId,
             'subtotal' => json_encode($invoice->getSubtotal()),
