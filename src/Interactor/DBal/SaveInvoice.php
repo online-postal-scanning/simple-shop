@@ -11,6 +11,5 @@ final class SaveInvoice extends DBalCommon implements SaveInvoiceInterface
 {
     public function save(Invoice $invoice): bool
     {
-
     }
 }
