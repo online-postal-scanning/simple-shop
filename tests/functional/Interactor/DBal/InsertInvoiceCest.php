@@ -42,6 +42,7 @@ class InsertInvoiceCest
         $card = (new CreditCard())
             ->setId(1);
         $paid = (new Paid())
+            ->setAmount(Money::USD(2910))
             ->setAuthorizationCode('8675309')
             ->setCard($card)
             ->setDate(new DateTime('2018-10-19'));
@@ -105,6 +106,7 @@ class InsertInvoiceCest
     {
         return [
             [
+                'amount'             => '{"amount":"2910","currency":"USD"}',
                 'authorization_code' => '8675309',
                 'date'               => '10-19-2018',
                 'card_id'            => '1',

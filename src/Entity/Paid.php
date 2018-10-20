@@ -4,9 +4,12 @@ declare(strict_types=1);
 namespace IamPersistent\SimpleShop\Entity;
 
 use DateTime;
+use Money\Money;
 
 final class Paid
 {
+    /** @var Money */
+    private $amount;
     /** @var string */
     private $authorizationCode;
     /** @var CreditCard */
@@ -15,6 +18,18 @@ final class Paid
     private $date;
     /** @var mixed */
     private $id;
+
+    public function getAmount(): Money
+    {
+        return $this->amount;
+    }
+
+    public function setAmount(Money $amount): Paid
+    {
+        $this->amount = $amount;
+
+        return $this;
+    }
 
     public function getAuthorizationCode(): string
     {

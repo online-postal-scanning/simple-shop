@@ -8,32 +8,36 @@ use IamPersistent\SimpleShop\Entity\CreditCard;
 use IamPersistent\SimpleShop\Entity\Invoice;
 use IamPersistent\SimpleShop\Entity\Paid;
 use IamPersistent\SimpleShop\Exception\PaymentProcessingError;
-use Money\Currencies\ISOCurrencies;
-use Money\Formatter\DecimalMoneyFormatter;
+use IamPersistent\SimpleShop\Interactor\DBal\InsertInvoice;
 use Omnipay\Common\GatewayInterface;
+use Omnipay\SmartPayments\Message\PurchaseResponse;
 
 final class ProcessPayment
 {
     private $gateway;
-    private $moneyFormatter;
+    private $insertInvoice;
 
-    public function __construct(GatewayInterface $gateway)
+    public function __construct(GatewayInterface $gateway, InsertInvoice $insertInvoice)
     {
         $this->gateway = $gateway;
-        $this->moneyFormatter = new DecimalMoneyFormatter(new ISOCurrencies());
+        $this->insertInvoice = $insertInvoice;
     }
 
     public function handle(Invoice $invoice, CreditCard $card)
     {
+        $total = $invoice->getTotal();
         $options = $this->extractCreditCardOptions($card);
-        $options['amount'] = $invoice->getTotal();
+        $options['amount'] = $total;
 
         try {
+            /** @var PurchaseResponse $response */
             $response = $this->gateway->purchase($options)->send();
             if ($response->isSuccessful()) {
-                $paid = (new Paid());
-
+                $paid = (new Paid())
+                    ->setAmount($total)
+                    ->setAuthorizationCode($response->getAuthorizationCode());
                 $invoice->setPaid($paid);
+                $this->insertInvoice->insert($invoice);
             } elseif ($response->isRedirect()) {
                 $response->redirect();
             } else {
