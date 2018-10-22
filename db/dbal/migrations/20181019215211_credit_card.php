@@ -38,7 +38,8 @@ class CreditCard extends AbstractMigration
             ->addColumn('expiration_date', 'date')
             ->addColumn('last_four', 'string', ['limit' => 4])
             ->addColumn('owner_id', 'integer')
-            ->addColumn('title', 'string')
+            ->addColumn('title', 'string', ['null' => true])
+            ->addColumn('type', 'string', ['null' => true])
             ->create();
     }
 }

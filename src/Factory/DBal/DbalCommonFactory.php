@@ -6,6 +6,7 @@ namespace IamPersistent\SimpleShop\Factory\DBal;
 use Doctrine\DBAL\Connection;
 use IamPersistent\SimpleShop\Interactor\DBal\DBalCommon;
 use IamPersistent\SimpleShop\Interactor\FetchInvoiceInterface;
+use IamPersistent\SimpleShop\Interactor\InsertCardInterface;
 use IamPersistent\SimpleShop\Interactor\InsertInvoiceInterface;
 use IamPersistent\SimpleShop\Interactor\SaveInvoiceInterface;
 use IamPersistent\SimpleShop\Interactor\UpdateInvoiceInterface;
@@ -32,6 +33,7 @@ final class DbalCommonFactory implements AbstractFactoryInterface
     ) {
         $acceptableInterfaces = [
             FetchInvoiceInterface::class,
+            InsertCardInterface::class,
             InsertInvoiceInterface::class,
             SaveInvoiceInterface::class,
             UpdateInvoiceInterface::class,

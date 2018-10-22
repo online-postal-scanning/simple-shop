@@ -19,7 +19,7 @@ final class CreditCard
     private $lastFour;
     /** @var mixed */
     private $ownerId;
-    /** @var string */
+    /** @var string|null */
     private $title;
 
     public function getCardNumber(): string
@@ -94,7 +94,7 @@ final class CreditCard
         return $this;
     }
 
-    public function getTitle(): string
+    public function getTitle(): ?string
     {
         return $this->title;
     }
