@@ -3,14 +3,20 @@ declare(strict_types=1);
 
 namespace IamPersistent\SimpleShop\Entity;
 
+use DateTime;
+
 final class CreditCard
 {
     /** @var string */
     private $cardNumber;
     /** @var string */
     private $cardReference;
+    /** @var DateTime */
+    private $expirationDate;
     /** @var mixed */
     private $id;
+    /** @var string */
+    private $lastFour;
     /** @var mixed */
     private $ownerId;
     /** @var string */
@@ -40,6 +46,18 @@ final class CreditCard
         return $this;
     }
 
+    public function getExpirationDate(): DateTime
+    {
+        return $this->expirationDate;
+    }
+
+    public function setExpirationDate(DateTime $expirationDate): CreditCard
+    {
+        $this->expirationDate = $expirationDate;
+
+        return $this;
+    }
+
     public function getId()
     {
         return $this->id;
@@ -48,6 +66,18 @@ final class CreditCard
     public function setId($id)
     {
         $this->id = $id;
+
+        return $this;
+    }
+
+    public function getLastFour(): string
+    {
+        return $this->lastFour;
+    }
+
+    public function setLastFour(string $lastFour): CreditCard
+    {
+        $this->lastFour = $lastFour;
 
         return $this;
     }

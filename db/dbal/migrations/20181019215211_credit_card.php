@@ -35,6 +35,8 @@ class CreditCard extends AbstractMigration
         $this->table('credit_cards')
             ->addColumn('card_number', 'string', ['limit' => 19])
             ->addColumn('card_reference', 'string')
+            ->addColumn('expiration_date', 'date')
+            ->addColumn('last_four', 'string', ['limit' => 4])
             ->addColumn('owner_id', 'integer')
             ->addColumn('title', 'string')
             ->create();

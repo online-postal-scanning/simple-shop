@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace IamPersistent\SimpleShop\Interactor;
 
+use DateTime;
 use IamPersistent\SimpleShop\Entity\CreditCard;
 use IamPersistent\SimpleShop\Interactor\DBal\InsertCard;
 use Omnipay\Common\CreditCard as OmniCreditCard;
@@ -19,7 +20,7 @@ final class AuthorizeCard
         $this->insertCard = $insertCard;
     }
 
-    public function handle(OmniCreditCard $omniCreditCard)
+    public function handle(OmniCreditCard $omniCreditCard, $ownerId)
     {
         $options = [
             'card' => $omniCreditCard,
@@ -28,8 +29,10 @@ final class AuthorizeCard
 
         if ($response->isSuccessful()) {
             $creditCard = (new CreditCard())
+                ->setCardNumber($omniCreditCard->getNumberMasked())
                 ->setCardReference($response->getCardReference())
-                ->setCardNumber($omniCreditCard->getNumberMasked());
+                ->setExpirationDate(new DateTime($omniCreditCard->getExpiryDate('Y-m-y')))
+                ->setOwnerId($ownerId);
             $this->insertCard->insert($creditCard);
         }
     }

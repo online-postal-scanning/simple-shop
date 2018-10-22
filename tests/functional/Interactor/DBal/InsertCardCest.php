@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Tests\Functional\Interactor\DBal;
 
+use DateTime;
 use Doctrine\DBAL\Connection;
 use FunctionalTester;
 use IamPersistent\SimpleShop\Entity\CreditCard;
@@ -27,6 +28,7 @@ class InsertCardCest
         $card = (new CreditCard())
             ->setCardNumber('4242424242424242')
             ->setCardReference('8675309')
+            ->setExpirationDate(new DateTime('2018-10-22'))
             ->setOwnerId('42')
             ->setTitle('My Test Card');
         $this->insertCard->insert($card);
@@ -38,11 +40,13 @@ class InsertCardCest
     {
         return [
             [
-                'card_number'    => 'XXXXXXXXXXXX4242',
-                'card_reference' => '8675309',
-                'id'             => '1',
-                'owner_id'       => '42',
-                'title'          => 'My Test Card',
+                'card_number'     => 'XXXXXXXXXXXX4242',
+                'card_reference'  => '8675309',
+                'expiration_date' => '2018-10-22',
+                'id'              => '1',
+                'last_four'       => '4242',
+                'owner_id'        => '42',
+                'title'           => 'My Test Card',
             ],
         ];
     }
