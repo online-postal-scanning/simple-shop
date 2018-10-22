@@ -20,7 +20,7 @@ final class AuthorizeCard
         $this->insertCard = $insertCard;
     }
 
-    public function handle(OmniCreditCard $omniCreditCard, $ownerId)
+    public function handle(OmniCreditCard $omniCreditCard, $ownerId): CreditCard
     {
         $options = [
             'card' => $omniCreditCard,
@@ -34,6 +34,9 @@ final class AuthorizeCard
                 ->setExpirationDate(new DateTime($omniCreditCard->getExpiryDate('Y-m-y')))
                 ->setOwnerId($ownerId);
             $this->insertCard->insert($creditCard);
+
+            return $creditCard;
         }
+
     }
 }
