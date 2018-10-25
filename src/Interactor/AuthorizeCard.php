@@ -37,6 +37,5 @@ final class AuthorizeCard
 
             return $creditCard;
         }
-
     }
 }
