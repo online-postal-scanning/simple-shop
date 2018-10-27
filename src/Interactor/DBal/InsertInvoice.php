@@ -42,6 +42,7 @@ final class InsertInvoice extends AbstractInvoice implements InsertInvoiceInterf
             'header' => $invoice->getHeader(),
             'invoice_date' => $invoice->getInvoiceDate()->format('Y-m-d'),
             'invoice_number' => $invoice->getInvoiceNumber(),
+            'recipient_id' => $invoice->getRecipientId(),
             'paid_id' => $paidId,
             'subtotal' => json_encode($invoice->getSubtotal()),
             'tax_rate' => $invoice->getTaxRate(),

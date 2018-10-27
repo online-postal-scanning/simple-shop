@@ -52,6 +52,7 @@ class InsertInvoiceCest
             ->setInvoiceDate(new DateTime('2018-10-19'))
             ->setInvoiceNumber('42')
             ->setItems($items)
+            ->setRecipientId('256')
             ->setPaid($paid)
             ->setTaxRate(.065);
         $this->insertInvoice->insert($invoice);
@@ -68,10 +69,11 @@ class InsertInvoiceCest
         return [
             [
                 'header'         => 'Monthly Subscription',
-                'invoice_date'   => '10-19-2018',
+                'invoice_date'   => '2018-10-19',
                 'invoice_number' => '42',
                 'id'             => '1',
                 'paid_id'        => '1',
+                'recipient_id'       => '256',
                 'subtotal'       => '{"amount":"2748","currency":"USD"}',
                 'taxes'          => '{"amount":"162","currency":"USD"}',
                 'total'          => '{"amount":"2910","currency":"USD"}',
@@ -110,7 +112,7 @@ class InsertInvoiceCest
             [
                 'amount'             => '{"amount":"2910","currency":"USD"}',
                 'authorization_code' => '8675309',
-                'date'               => '10-19-2018',
+                'date'               => '2018-10-19',
                 'card_id'            => '1',
                 'id'                 => '1',
             ],

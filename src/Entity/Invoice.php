@@ -21,6 +21,8 @@ final class Invoice
     private $invoiceNumber;
     /** @var InvoiceItem[] */
     private $items;
+    /** @var mixed */
+    private $recipientId;
     /** @var Paid|null */
     private $paid;
     /** @var Money */
@@ -103,6 +105,18 @@ final class Invoice
     public function setItems(array $items): Invoice
     {
         $this->items = $items;
+
+        return $this;
+    }
+
+    public function getRecipientId()
+    {
+        return $this->recipientId;
+    }
+
+    public function setRecipientId($recipientId)
+    {
+        $this->recipientId = $recipientId;
 
         return $this;
     }
