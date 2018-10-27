@@ -32,8 +32,9 @@ class Invoice extends AbstractMigration
     public function change()
     {
         $this->table('invoices')
+            ->addColumn('header', 'string')
             ->addColumn('invoice_date', 'date')
-            ->addColumn('invoice_number', 'string', ['limit' => 100])
+            ->addColumn('invoice_number', 'string', ['limit' => 100, 'unique' => true])
             ->addColumn('paid_id', 'integer', ['signed' => false, 'null' => true])
             ->addColumn('subtotal', 'text')
             ->addColumn('tax_rate', 'float')

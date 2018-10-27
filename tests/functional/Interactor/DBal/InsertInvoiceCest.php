@@ -48,6 +48,7 @@ class InsertInvoiceCest
             ->setDate(new DateTime('2018-10-19'));
         $invoice = (new Invoice())
             ->setCurrency(new Currency('USD'))
+            ->setHeader('Monthly Subscription')
             ->setInvoiceDate(new DateTime('2018-10-19'))
             ->setInvoiceNumber('42')
             ->setItems($items)
@@ -66,6 +67,7 @@ class InsertInvoiceCest
     {
         return [
             [
+                'header'         => 'Monthly Subscription',
                 'invoice_date'   => '10-19-2018',
                 'invoice_number' => '42',
                 'id'             => '1',

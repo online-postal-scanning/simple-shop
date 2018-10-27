@@ -39,6 +39,7 @@ final class InsertInvoice extends AbstractInvoice implements InsertInvoiceInterf
         $paid->setId($paidId);
 
         $data = [
+            'header' => $invoice->getHeader(),
             'invoice_date' => $invoice->getInvoiceDate()->format('Y-m-d'),
             'invoice_number' => $invoice->getInvoiceNumber(),
             'paid_id' => $paidId,

@@ -11,6 +11,8 @@ final class Invoice
 {
     /** @var Currency */
     private $currency;
+    /** @var string */
+    private $header = '';
     /** @var mixed */
     private $id;
     /** @var DateTime */
@@ -38,6 +40,18 @@ final class Invoice
     public function setCurrency(Currency $currency): Invoice
     {
         $this->currency = $currency;
+
+        return $this;
+    }
+
+    public function getHeader(): string
+    {
+        return $this->header;
+    }
+
+    public function setHeader(string $header): Invoice
+    {
+        $this->header = $header;
 
         return $this;
     }
