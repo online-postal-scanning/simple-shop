@@ -58,7 +58,7 @@ class InsertInvoiceCest
         $this->insertInvoice->insert($invoice);
         $invoiceData = $this->connection->fetchAll('SELECT * FROM invoices');
         $invoiceItemsData = $this->connection->fetchAll('SELECT * FROM invoice_items');
-        $paidData = $this->connection->fetchAll('SELECT * FROM paid');
+        $paidData = $this->connection->fetchAll('SELECT * FROM invoice_paid');
         $I->assertEquals($this->expectedInvoiceData(), $invoiceData);
         $I->assertEquals($this->expectedInvoiceItemsData(), $invoiceItemsData);
         $I->assertEquals($this->expectedPaidData(), $paidData);

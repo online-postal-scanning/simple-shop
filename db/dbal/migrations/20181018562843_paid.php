@@ -32,7 +32,7 @@ class Paid extends AbstractMigration
      */
     public function change()
     {
-        $this->table('paid')
+        $this->table('invoice_paid')
             ->addColumn('amount', 'text')
             ->addColumn('authorization_code', 'string', ['limit' => 255])
             ->addColumn('date', 'date')
