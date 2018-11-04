@@ -99,7 +99,7 @@ final class CreditCard
         return $this->title;
     }
 
-    public function setTitle(string $title): CreditCard
+    public function setTitle(string $title = null): CreditCard
     {
         $this->title = $title;
 
