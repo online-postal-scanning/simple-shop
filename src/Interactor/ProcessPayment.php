@@ -9,7 +9,6 @@ use IamPersistent\SimpleShop\Entity\CreditCard;
 use IamPersistent\SimpleShop\Entity\Invoice;
 use IamPersistent\SimpleShop\Entity\Paid;
 use IamPersistent\SimpleShop\Exception\PaymentProcessingError;
-use IamPersistent\SimpleShop\Interactor\DBal\InsertInvoice;
 use Omnipay\Common\GatewayInterface;
 use Omnipay\SmartPayments\Message\PurchaseResponse;
 
@@ -18,7 +17,7 @@ final class ProcessPayment
     private $gateway;
     private $insertInvoice;
 
-    public function __construct(GatewayInterface $gateway, InsertInvoice $insertInvoice)
+    public function __construct(GatewayInterface $gateway, InsertInvoiceInterface $insertInvoice)
     {
         $this->gateway = $gateway;
         $this->insertInvoice = $insertInvoice;
