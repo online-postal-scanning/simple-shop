@@ -31,7 +31,7 @@ final class InsertInvoice extends AbstractInvoice implements InsertInvoiceInterf
             'date'               => $paid->getDate()->format('Y-m-d'),
             'card_id'            => $paid->getCard()->getId(),
         ];
-        $response = $this->connection->insert('paid', $data);
+        $response = $this->connection->insert('invoice_paid', $data);
         if (1 !== $response) {
             return;
         }
