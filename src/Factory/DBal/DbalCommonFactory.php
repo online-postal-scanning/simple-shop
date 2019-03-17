@@ -23,7 +23,7 @@ final class DbalCommonFactory implements AbstractFactoryInterface
         array $options = null
     ): DBalCommon {
         $connection = $container->get(Connection::class);
-        $className = $this->getClassNameFromInterface($requestedName);
+        $className = $this->getClassNameFromRequestedName($requestedName);
 
         return new $className($connection);
     }
@@ -41,7 +41,17 @@ final class DbalCommonFactory implements AbstractFactoryInterface
             UpdateInvoiceInterface::class,
         ];
 
-        return in_array($requestedName, $acceptableInterfaces);
+        if (in_array($requestedName, $acceptableInterfaces)) {
+            return true;
+        }
+
+        foreach ($acceptableInterfaces as $interface) {
+            if (is_subclass_of($requestedName, $interface)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**
@@ -78,9 +88,13 @@ final class DbalCommonFactory implements AbstractFactoryInterface
         // TODO: Implement createServiceWithName() method.
     }
 
-    private function getClassNameFromInterface($interface): string
+    private function getClassNameFromRequestedName($name): string
     {
-        $parts = explode('\\', $interface);
+        if (class_exists($name)) {
+            return $name;
+        }
+
+        $parts = explode('\\', $name);
         $class = substr($parts[3], 0, -9);
         $parts[3] = 'DBal';
         $parts[4] = $class;
