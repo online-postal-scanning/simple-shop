@@ -8,6 +8,8 @@ use DateTime;
 final class CreditCard
 {
     /** @var string */
+    private $brand;
+    /** @var string */
     private $cardNumber;
     /** @var string */
     private $cardReference;
@@ -21,6 +23,18 @@ final class CreditCard
     private $ownerId;
     /** @var string|null */
     private $title;
+
+    public function getBrand(): string
+    {
+        return $this->brand;
+    }
+
+    public function setBrand(string $brand): CreditCard
+    {
+        $this->brand = $brand;
+
+        return $this;
+    }
 
     public function getCardNumber(): string
     {

@@ -20,7 +20,7 @@ final class AuthorizeCard
         $this->insertCard = $insertCard;
     }
 
-    public function handle(OmniCreditCard $omniCreditCard, $ownerId): CreditCard
+    public function handle(OmniCreditCard $omniCreditCard, $ownerId): ?CreditCard
     {
         $options = [
             'card' => $omniCreditCard,
@@ -29,9 +29,11 @@ final class AuthorizeCard
 
         if ($response->isSuccessful()) {
             $creditCard = (new CreditCard())
+                ->setBrand($omniCreditCard->getBrand())
                 ->setCardNumber($omniCreditCard->getNumberMasked())
                 ->setCardReference($response->getCardReference())
                 ->setExpirationDate(new DateTime($omniCreditCard->getExpiryDate('Y-m-y')))
+                ->setLastFour($omniCreditCard->getNumberLastFour())
                 ->setOwnerId($ownerId);
             $this->insertCard->insert($creditCard);
 
