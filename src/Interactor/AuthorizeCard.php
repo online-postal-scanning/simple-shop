@@ -8,11 +8,13 @@ use IamPersistent\SimpleShop\Entity\CreditCard;
 use IamPersistent\SimpleShop\Interactor\DBal\InsertCard;
 use Omnipay\Common\CreditCard as OmniCreditCard;
 use Omnipay\Common\GatewayInterface;
+use Omnipay\Common\Message\ResponseInterface;
 
 final class AuthorizeCard
 {
     private $gateway;
     private $insertCard;
+    private $response;
 
     public function __construct(GatewayInterface $gateway, InsertCard $insertCard)
     {
@@ -20,18 +22,23 @@ final class AuthorizeCard
         $this->insertCard = $insertCard;
     }
 
+    public function getResponse(): ResponseInterface
+    {
+        return $this->response;
+    }
+
     public function handle(OmniCreditCard $omniCreditCard, $ownerId): ?CreditCard
     {
         $options = [
             'card' => $omniCreditCard,
         ];
-        $response = $this->gateway->createCard($options)->send();
+        $this->response = $this->gateway->createCard($options)->send();
 
-        if ($response->isSuccessful()) {
+        if ($this->response->isSuccessful()) {
             $creditCard = (new CreditCard())
                 ->setBrand($omniCreditCard->getBrand())
                 ->setCardNumber($omniCreditCard->getNumberMasked())
-                ->setCardReference($response->getCardReference())
+                ->setCardReference($this->response->getCardReference())
                 ->setExpirationDate(new DateTime($omniCreditCard->getExpiryDate('Y-m-y')))
                 ->setLastFour($omniCreditCard->getNumberLastFour())
                 ->setOwnerId($ownerId);
@@ -39,5 +46,7 @@ final class AuthorizeCard
 
             return $creditCard;
         }
+
+        return null;
     }
 }
