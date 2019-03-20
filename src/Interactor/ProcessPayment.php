@@ -10,7 +10,7 @@ use IamPersistent\SimpleShop\Entity\Invoice;
 use IamPersistent\SimpleShop\Entity\Paid;
 use IamPersistent\SimpleShop\Exception\PaymentProcessingError;
 use Omnipay\Common\GatewayInterface;
-use Omnipay\SmartPayments\Message\PurchaseResponse;
+use Omnipay\Common\Message\ResponseInterface;
 
 final class ProcessPayment
 {
@@ -30,12 +30,12 @@ final class ProcessPayment
         $options['amount'] = $total;
 
         try {
-            /** @var PurchaseResponse $response */
+            /** @var ResponseInterface $response */
             $response = $this->gateway->purchase($options)->send();
             if ($response->isSuccessful()) {
                 $paid = (new Paid())
                     ->setAmount($total)
-                    ->setAuthorizationCode($response->getAuthorizationCode())
+                    ->setAuthorizationCode($response->getCode())
                     ->setCard($card)
                     ->setDate(new DateTime());
                 $invoice->setPaid($paid);
