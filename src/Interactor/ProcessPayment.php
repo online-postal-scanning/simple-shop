@@ -27,7 +27,7 @@ final class ProcessPayment
     {
         $total = $invoice->getTotal();
         $options = $this->extractCreditCardOptions($card);
-        $options['amount'] = $total;
+        $options['money'] = $total;
 
         try {
             /** @var ResponseInterface $response */
