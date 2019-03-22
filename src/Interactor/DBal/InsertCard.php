@@ -6,6 +6,7 @@ namespace IamPersistent\SimpleShop\Interactor\DBal;
 use IamPersistent\SimpleShop\Entity\CreditCard;
 use IamPersistent\SimpleShop\Interactor\InsertCardInterface;
 use Omnipay\Common\CreditCard as OmniCreditCard;
+use Xaddax\Interactor\PascalCase;
 
 final class InsertCard extends DBalCommon implements InsertCardInterface
 {
@@ -21,7 +22,7 @@ final class InsertCard extends DBalCommon implements InsertCardInterface
         $omniCard = new OmniCreditCard(['number' => $creditCard->getCardNumber()]);
 
         $data = [
-            'brand' => $creditCard->getBrand(),
+            'brand' => (new PascalCase)($creditCard->getBrand()),
             'card_number' => $omniCard->getNumberMasked(),
             'card_reference' => $creditCard->getCardReference(),
             'expiration_date' => $creditCard->getExpirationDate()->format('Y-m-d'),
