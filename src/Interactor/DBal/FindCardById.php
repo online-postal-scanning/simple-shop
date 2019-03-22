@@ -17,13 +17,6 @@ final class FindCardById extends DBalCommon implements FindCardByIdInterface
             return null;
         }
 
-        return (new CreditCard())
-            ->setCardNumber($cardData['card_number'])
-            ->setCardReference($cardData['card_reference'])
-            ->setExpirationDate(new DateTime($cardData['expiration_date']))
-            ->setId($cardData['id'])
-            ->setLastFour($cardData['last_four'])
-            ->setOwnerId($cardData['owner_id'])
-            ->setTitle($cardData['title']);
+        return (new HydrateCreditCard())($cardData);
     }
 }
