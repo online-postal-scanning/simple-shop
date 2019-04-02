@@ -5,7 +5,7 @@ namespace IamPersistent\SimpleShop\Entity;
 
 use DateTime;
 
-final class CreditCard
+final class CreditCard implements PaymentMethodInterface
 {
     /** @var string */
     private $brand;
@@ -106,6 +106,11 @@ final class CreditCard
         $this->ownerId = $ownerId;
 
         return $this;
+    }
+
+    public function getPaymentMethodType(): string
+    {
+        return 'creditCard';
     }
 
     public function getTitle(): ?string
