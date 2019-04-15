@@ -10,10 +10,10 @@ final class Paid
 {
     /** @var Money */
     private $amount;
-    /** @var string */
+    /** @var string|null */
     private $authorizationCode;
-    /** @var CreditCard */
-    private $card;
+    /** @var PaymentMethodInterface */
+    private $paymentMethod;
     /** @var DateTime */
     private $date;
     /** @var mixed */
@@ -31,7 +31,7 @@ final class Paid
         return $this;
     }
 
-    public function getAuthorizationCode(): string
+    public function getAuthorizationCode(): ?string
     {
         return $this->authorizationCode;
     }
@@ -39,18 +39,6 @@ final class Paid
     public function setAuthorizationCode(string $authorizationCode): Paid
     {
         $this->authorizationCode = $authorizationCode;
-
-        return $this;
-    }
-
-    public function getCard(): CreditCard
-    {
-        return $this->card;
-    }
-
-    public function setCard(CreditCard $card): Paid
-    {
-        $this->card = $card;
 
         return $this;
     }
@@ -75,6 +63,18 @@ final class Paid
     public function setId($id)
     {
         $this->id = $id;
+
+        return $this;
+    }
+
+    public function getPaymentMethod(): PaymentMethodInterface
+    {
+        return $this->paymentMethod;
+    }
+
+    public function setPaymentMethod(PaymentMethodInterface $paymentMethod): Paid
+    {
+        $this->paymentMethod = $paymentMethod;
 
         return $this;
     }

@@ -17,7 +17,7 @@ final class Invoice
     private $id;
     /** @var DateTime */
     private $invoiceDate;
-    /** @var string */
+    /** @var string|null */
     private $invoiceNumber;
     /** @var InvoiceItem[] */
     private $items;
@@ -82,7 +82,7 @@ final class Invoice
         return $this;
     }
 
-    public function getInvoiceNumber(): string
+    public function getInvoiceNumber(): ?string
     {
         return $this->invoiceNumber;
     }

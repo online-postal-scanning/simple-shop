@@ -8,6 +8,7 @@ use Exception;
 use IamPersistent\SimpleShop\Entity\CreditCard;
 use IamPersistent\SimpleShop\Entity\Invoice;
 use IamPersistent\SimpleShop\Entity\Paid;
+use IamPersistent\SimpleShop\Entity\PaymentMethodInterface;
 use IamPersistent\SimpleShop\Exception\PaymentProcessingError;
 use Omnipay\Common\GatewayInterface;
 use Omnipay\Common\Message\ResponseInterface;
@@ -23,7 +24,7 @@ final class ProcessPayment
         $this->insertInvoice = $insertInvoice;
     }
 
-    public function handle(Invoice $invoice, CreditCard $card)
+    public function handle(Invoice $invoice, PaymentMethodInterface $card)
     {
         $total = $invoice->getTotal();
         $options = $this->extractCreditCardOptions($card);
@@ -36,7 +37,7 @@ final class ProcessPayment
                 $paid = (new Paid())
                     ->setAmount($total)
                     ->setAuthorizationCode($response->getCode())
-                    ->setCard($card)
+                    ->setPaymentMethod($card)
                     ->setDate(new DateTime());
                 $invoice->setPaid($paid);
                 $this->insertInvoice->insert($invoice);

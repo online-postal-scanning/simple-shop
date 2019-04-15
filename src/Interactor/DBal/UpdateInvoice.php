@@ -8,7 +8,6 @@ use IamPersistent\SimpleShop\Interactor\UpdateInvoiceInterface;
 
 final class UpdateInvoice extends AbstractInvoice implements UpdateInvoiceInterface
 {
-
     public function update(Invoice $invoice): bool
     {
         $sql = $this->sql($invoice);

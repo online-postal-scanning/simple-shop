@@ -44,7 +44,7 @@ class InsertInvoiceCest
         $paid = (new Paid())
             ->setAmount(Money::USD(2910))
             ->setAuthorizationCode('8675309')
-            ->setCard($card)
+            ->setPaymentMethod($card)
             ->setDate(new DateTime('2018-10-19'));
         $invoice = (new Invoice())
             ->setCurrency(new Currency('USD'))

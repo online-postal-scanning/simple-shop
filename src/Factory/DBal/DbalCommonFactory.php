@@ -7,6 +7,7 @@ use Doctrine\DBAL\Connection;
 use IamPersistent\SimpleShop\Interactor\DBal\DBalCommon;
 use IamPersistent\SimpleShop\Interactor\FetchInvoiceInterface;
 use IamPersistent\SimpleShop\Interactor\FindCardByIdInterface;
+use IamPersistent\SimpleShop\Interactor\FindCardByLastFourInterface;
 use IamPersistent\SimpleShop\Interactor\InsertCardInterface;
 use IamPersistent\SimpleShop\Interactor\InsertInvoiceInterface;
 use IamPersistent\SimpleShop\Interactor\SaveInvoiceInterface;
@@ -35,6 +36,7 @@ final class DbalCommonFactory implements AbstractFactoryInterface
         $acceptableInterfaces = [
             FetchInvoiceInterface::class,
             FindCardByIdInterface::class,
+            FindCardByLastFourInterface::class,
             InsertCardInterface::class,
             InsertInvoiceInterface::class,
             SaveInvoiceInterface::class,
