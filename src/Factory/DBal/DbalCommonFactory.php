@@ -9,6 +9,7 @@ use IamPersistent\SimpleShop\Interactor\FetchInvoiceInterface;
 use IamPersistent\SimpleShop\Interactor\FindCardByIdInterface;
 use IamPersistent\SimpleShop\Interactor\FindCardByLastFourInterface;
 use IamPersistent\SimpleShop\Interactor\InsertCardInterface;
+use IamPersistent\SimpleShop\Interactor\InsertCheckInterface;
 use IamPersistent\SimpleShop\Interactor\InsertInvoiceInterface;
 use IamPersistent\SimpleShop\Interactor\SaveInvoiceInterface;
 use IamPersistent\SimpleShop\Interactor\UpdateInvoiceInterface;
@@ -38,6 +39,7 @@ final class DbalCommonFactory implements AbstractFactoryInterface
             FindCardByIdInterface::class,
             FindCardByLastFourInterface::class,
             InsertCardInterface::class,
+            InsertCheckInterface::class,
             InsertInvoiceInterface::class,
             SaveInvoiceInterface::class,
             UpdateInvoiceInterface::class,
