@@ -5,8 +5,8 @@ namespace IamPersistent\SimpleShop\Interactor\DBal;
 
 use IamPersistent\SimpleShop\Entity\CreditCard;
 use IamPersistent\SimpleShop\Interactor\InsertCardInterface;
+use IamPersistent\SimpleShop\Interactor\PascalCase;
 use Omnipay\Common\CreditCard as OmniCreditCard;
-use Xaddax\Interactor\PascalCase;
 
 final class InsertCard extends DBalCommon implements InsertCardInterface
 {

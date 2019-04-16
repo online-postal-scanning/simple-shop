@@ -21,6 +21,11 @@ class InsertInvoiceCest
     /** @var InsertInvoice */
     private $insertInvoice;
 
+    public function _after(FunctionalTester $I)
+    {
+        $I->dropDatabase();
+    }
+
     public function _before(FunctionalTester $I)
     {
         $this->connection = $I->getDBalConnection();
@@ -73,7 +78,7 @@ class InsertInvoiceCest
                 'invoice_number' => '42',
                 'id'             => '1',
                 'paid_id'        => '1',
-                'recipient_id'       => '256',
+                'recipient_id'   => '256',
                 'subtotal'       => '{"amount":"2748","currency":"USD"}',
                 'taxes'          => '{"amount":"162","currency":"USD"}',
                 'total'          => '{"amount":"2910","currency":"USD"}',
@@ -110,11 +115,12 @@ class InsertInvoiceCest
     {
         return [
             [
-                'amount'             => '{"amount":"2910","currency":"USD"}',
-                'authorization_code' => '8675309',
-                'date'               => '2018-10-19',
-                'card_id'            => '1',
-                'id'                 => '1',
+                'amount'              => '{"amount":"2910","currency":"USD"}',
+                'authorization_code'  => '8675309',
+                'date'                => '2018-10-19',
+                'id'                  => '1',
+                'payment_method_id'  => '1',
+                'payment_method_type' => 'creditCard',
             ],
         ];
     }

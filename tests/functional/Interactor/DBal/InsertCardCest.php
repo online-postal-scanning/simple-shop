@@ -16,6 +16,11 @@ class InsertCardCest
     /** @var InsertCard */
     private $insertCard;
 
+    public function _after(FunctionalTester $I)
+    {
+        $I->dropDatabase();
+    }
+
     public function _before(FunctionalTester $I)
     {
         $this->connection = $I->getDBalConnection();
@@ -26,9 +31,10 @@ class InsertCardCest
     public function testInsert(FunctionalTester $I)
     {
         $card = (new CreditCard())
+            ->setBrand('Visa')
             ->setCardNumber('4242424242424242')
             ->setCardReference('8675309')
-            ->setExpirationDate(new DateTime('2018-10-22'))
+            ->setExpirationDate(new DateTime('2018-10-01'))
             ->setOwnerId('42')
             ->setTitle('My Test Card');
         $this->insertCard->insert($card);
@@ -40,9 +46,10 @@ class InsertCardCest
     {
         return [
             [
+                'brand'           => 'Visa',
                 'card_number'     => 'XXXXXXXXXXXX4242',
                 'card_reference'  => '8675309',
-                'expiration_date' => '2018-10-22',
+                'expiration_date' => '2018-10-01',
                 'id'              => '1',
                 'last_four'       => '4242',
                 'owner_id'        => '42',

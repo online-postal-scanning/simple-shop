@@ -18,19 +18,16 @@ class Functional extends \Codeception\Module
     /** @var PDO */
     private $pdo;
 
-    public function setUpDatabase()
+    public function dropDatabase()
     {
-        $configFile = __DIR__ . '/../../../phinx.yml';
-        $configArray = yaml_parse_file($configFile);
-        $configArray['paths']['migrations'] = __DIR__ . '/../../../db/dbal/migrations';
-        $configArray['environments']['test'] = [
-            'adapter'    => 'sqlite',
-            'connection' => $this->getPDO()
-        ];
-        $config = new Config($configArray);
-        $manager = new Manager($config, new StringInput(' '), new NullOutput());
-        $manager->migrate('test');
-        $this->pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
+        $schemaManager = $this->getDBalConnection()->getSchemaManager();
+        $tables = $schemaManager->listTables();
+        foreach ($tables as $table) {
+            $tableName= $table->getName();
+            $this->connection->exec("DELETE FROM $tableName;");
+            $this->connection->exec("DELETE FROM sqlite_sequence WHERE name='$tableName';");
+        }
+        $this->pdo = null;
     }
 
     public function getDBalConnection()
@@ -58,5 +55,20 @@ class Functional extends \Codeception\Module
         }
 
         return $this->pdo;
+    }
+
+    public function setUpDatabase()
+    {
+        $configFile = __DIR__ . '/../../../phinx.yml';
+        $configArray = yaml_parse_file($configFile);
+        $configArray['paths']['migrations'] = __DIR__ . '/../../../db/dbal/migrations';
+        $configArray['environments']['test'] = [
+            'adapter'    => 'sqlite',
+            'connection' => $this->getPDO()
+        ];
+        $config = new Config($configArray);
+        $manager = new Manager($config, new StringInput(' '), new NullOutput());
+        $manager->migrate('test');
+        $this->pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
     }
 }

@@ -16,6 +16,11 @@ class FindCardByIdCest
     /** @var FindCardById */
     private $findCardById;
 
+    public function _after(FunctionalTester $I)
+    {
+        $I->dropDatabase();
+    }
+
     public function _before(FunctionalTester $I)
     {
         $this->connection = $I->getDBalConnection();
@@ -35,9 +40,10 @@ class FindCardByIdCest
     private function cardData(): array
     {
         return [
+            'brand'           => 'Visa',
             'card_number'     => 'XXXXXXXXXXXX4242',
             'card_reference'  => '8675309',
-            'expiration_date' => '2018-10-22',
+            'expiration_date' => '2018-10-01',
             'id'              => 1,
             'last_four'       => '4242',
             'owner_id'        => 42,
@@ -48,9 +54,10 @@ class FindCardByIdCest
     private function expectedCreditCard(): CreditCard
     {
         return (new CreditCard())
+            ->setBrand('Visa')
             ->setCardNumber('XXXXXXXXXXXX4242')
             ->setCardReference('8675309')
-            ->setExpirationDate(new DateTime('2018-10-22'))
+            ->setExpirationDate(new DateTime('2018-10-01'))
             ->setId(1)
             ->setLastFour('4242')
             ->setOwnerId(42)
