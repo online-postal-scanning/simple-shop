@@ -17,9 +17,10 @@ final class InsertCheck extends DBalCommon implements InsertCheckInterface
 
     private function persist(Check $check)
     {
+        $date = $check->getDate() ? $check->getDate()->format('Y-m-d') : null;
         $data = [
             'check_number' => $check->getCheckNumber(),
-            'date' => $check->getDate()->format('Y-m-d'),
+            'date'         => $date,
         ];
         $response = $this->connection->insert('checks', $data);
         if (1 === $response) {

@@ -37,13 +37,33 @@ class InsertCheckCest
         $I->assertEquals($this->expectedCheckData(), $checkData);
     }
 
+    public function testInsertNoDate(FunctionalTester $I)
+    {
+        $check = (new Check())
+            ->setCheckNumber('1024');
+        $this->insertCheck->insert($check);
+        $checkData = $this->connection->fetchAll('SELECT * FROM checks');
+        $I->assertEquals($this->expectedCheckWithNoDateData(), $checkData);
+    }
+
     private function expectedCheckData(): array
     {
         return [
             [
-                'check_number'     => '1024',
-                'date' => '2018-10-01',
-                'id'              => '1',
+                'check_number' => '1024',
+                'date'         => '2018-10-01',
+                'id'           => '1',
+            ],
+        ];
+    }
+
+    private function expectedCheckWithNoDateData(): array
+    {
+        return [
+            [
+                'check_number' => '1024',
+                'date'         => null,
+                'id'           => '1',
             ],
         ];
     }
