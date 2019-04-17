@@ -34,7 +34,7 @@ class Check extends AbstractMigration
     {
         $this->table('checks')
             ->addColumn('check_number', 'string', ['limit' => 255])
-            ->addColumn('date', 'date')
+            ->addColumn('date', 'date', ['null' => true])
             ->create();
     }
 }
