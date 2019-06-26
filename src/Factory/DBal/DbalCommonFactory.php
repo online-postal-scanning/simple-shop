@@ -12,6 +12,7 @@ use IamPersistent\SimpleShop\Interactor\InsertCardInterface;
 use IamPersistent\SimpleShop\Interactor\InsertCheckInterface;
 use IamPersistent\SimpleShop\Interactor\InsertInvoiceInterface;
 use IamPersistent\SimpleShop\Interactor\SaveInvoiceInterface;
+use IamPersistent\SimpleShop\Interactor\SaveProductInterface;
 use IamPersistent\SimpleShop\Interactor\UpdateInvoiceInterface;
 use Psr\Container\ContainerInterface;
 use Zend\ServiceManager\AbstractFactoryInterface;
@@ -42,6 +43,7 @@ final class DbalCommonFactory implements AbstractFactoryInterface
             InsertCheckInterface::class,
             InsertInvoiceInterface::class,
             SaveInvoiceInterface::class,
+            SaveProductInterface::class,
             UpdateInvoiceInterface::class,
         ];
 

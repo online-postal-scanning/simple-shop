@@ -94,6 +94,13 @@ final class Invoice
         return $this;
     }
 
+    public function addItem(InvoiceItem $invoiceItem): Invoice
+    {
+        $this->items[] = $invoiceItem;
+
+        return $this;
+    }
+
     /**
      * @return InvoiceItem[]
      */

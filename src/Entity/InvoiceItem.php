@@ -15,6 +15,8 @@ final class InvoiceItem
     private $id;
     /** @var mixed */
     private $invoiceId;
+    /** @var Product */
+    private $product;
     /** @var bool */
     private $isTaxable;
     /** @var int */
@@ -66,6 +68,18 @@ final class InvoiceItem
     public function setInvoiceId($invoiceId)
     {
         $this->invoiceId = $invoiceId;
+
+        return $this;
+    }
+
+    public function getProduct(): \IamPersistent\SimpleShop\Entity\Product
+    {
+        return $this->product;
+    }
+
+    public function setProduct(\IamPersistent\SimpleShop\Entity\Product $product): InvoiceItem
+    {
+        $this->product = $product;
 
         return $this;
     }
