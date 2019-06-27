@@ -17,6 +17,7 @@ final class HydrateProduct
         return (new Product())
             ->setActive($sqlToBool($data['active']))
             ->setDescription($data['description'])
+            ->setId((int) $data['id'])
             ->setName($data['name'])
             ->setPrice($jsonToMoney($data['price']))
             ->setTaxable($sqlToBool($data['taxable']));
