@@ -85,6 +85,7 @@ final class SaveInvoice extends DBalCommon implements SaveInvoiceInterface
         $paidId = $this->savePaid($invoice->getPaid());
 
         return [
+            'currency'       => $invoice->getCurrency(),
             'header'         => $invoice->getHeader(),
             'invoice_date'   => $invoice->getInvoiceDate()->format('Y-m-d'),
             'invoice_number' => $invoice->getInvoiceNumber(),
