@@ -5,10 +5,7 @@ namespace IamPersistent\SimpleShop\Interactor;
 
 use IamPersistent\SimpleShop\Entity\Invoice;
 
-final class FetchInvoiceInterface
+interface FindInvoiceByIdInterface
 {
-    public function fetch($id): ?Invoice
-    {
-
-    }
+    public function find($id): ?Invoice;
 }

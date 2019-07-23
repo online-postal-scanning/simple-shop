@@ -9,7 +9,7 @@ final class Product
 {
     /** @var bool */
     private $active;
-    /** @var string */
+    /** @var string|null */
     private $description;
     /** @var mixed */
     private $id;
@@ -32,12 +32,12 @@ final class Product
         return $this;
     }
 
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->description;
     }
 
-    public function setDescription(string $description): Product
+    public function setDescription(?string $description): Product
     {
         $this->description = $description;
 

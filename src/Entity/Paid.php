@@ -36,7 +36,7 @@ final class Paid
         return $this->authorizationCode;
     }
 
-    public function setAuthorizationCode(string $authorizationCode): Paid
+    public function setAuthorizationCode(?string $authorizationCode): Paid
     {
         $this->authorizationCode = $authorizationCode;
 

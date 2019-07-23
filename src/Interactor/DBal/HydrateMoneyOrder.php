@@ -15,6 +15,6 @@ final class HydrateMoneyOrder
         return (new MoneyOrder())
             ->setDate($date)
             ->setId($moneyOrderData['id'])
-            ->setSerialNumber($moneyOrderData['check_number']);
+            ->setSerialNumber($moneyOrderData['serial_number']);
     }
 }
