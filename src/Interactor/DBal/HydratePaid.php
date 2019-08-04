@@ -12,6 +12,7 @@ use IamPersistent\SimpleShop\Entity\CreditCard;
 use IamPersistent\SimpleShop\Entity\MoneyOrder;
 use IamPersistent\SimpleShop\Entity\Paid;
 use IamPersistent\SimpleShop\Entity\PaymentMethodInterface;
+use IamPersistent\SimpleShop\Entity\Unknown;
 
 final class HydratePaid
 {
@@ -82,5 +83,10 @@ final class HydratePaid
         ];
 
         return (new HydrateMoneyOrder())($data);
+    }
+
+    private function getUnknown(array $paidData): Unknown
+    {
+        return (new Unknown());
     }
 }
