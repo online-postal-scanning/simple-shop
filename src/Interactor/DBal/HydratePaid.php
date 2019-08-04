@@ -5,6 +5,7 @@ namespace IamPersistent\SimpleShop\Interactor\DBal;
 
 use DateTime;
 use IamPersistent\Money\Interactor\JsonToMoney;
+use IamPersistent\SimpleShop\Entity\BalanceAdjustment;
 use IamPersistent\SimpleShop\Entity\Cash;
 use IamPersistent\SimpleShop\Entity\Check;
 use IamPersistent\SimpleShop\Entity\CreditCard;
@@ -33,6 +34,11 @@ final class HydratePaid
         $method = 'get'.ucfirst($paidData['payment_method_type']);
 
         return $this->$method($paidData);
+    }
+
+    private function getBalanceAdjustment(array $paidData): BalanceAdjustment
+    {
+        return (new BalanceAdjustment());
     }
 
     private function getCash(array $paidData): Cash
