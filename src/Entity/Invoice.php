@@ -22,7 +22,7 @@ final class Invoice
     /** @var string|null */
     private $invoiceNumber;
     /** @var InvoiceItem[] */
-    private $items;
+    private $items = [];
     /** @var mixed */
     private $recipientId;
     /** @var Paid|null */
