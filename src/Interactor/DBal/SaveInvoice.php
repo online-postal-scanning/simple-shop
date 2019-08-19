@@ -65,12 +65,14 @@ final class SaveInvoice extends DBalCommon implements SaveInvoiceInterface
         try {
             $data = $this->prepDataForPersistence($invoice);
 
-            $response = $this->connection->update('invoices', $data, $invoice->getId());
+            $response = $this->connection->update('invoices', $data, ['id' => $invoice->getId()]);
 
             $this->saveInvoiceItems($invoice);
 
         } catch (Exception $e) {
             $this->connection->rollBack();
+
+            return false;
         }
 
         $this->connection->commit();

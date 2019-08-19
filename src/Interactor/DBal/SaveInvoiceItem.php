@@ -37,7 +37,7 @@ final class SaveInvoiceItem extends DBalCommon
     {
         $data = $this->prepDataForPersistence($invoice, $invoiceItem);
 
-        $response = $this->connection->update('invoice_itmes', $data, $invoiceItem->getId());
+        $response = $this->connection->update('invoice_items', $data, ['id' => $invoiceItem->getId()]);
 
         return true;
     }
