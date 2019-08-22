@@ -88,6 +88,7 @@ final class SaveInvoice extends DBalCommon implements SaveInvoiceInterface
 
         return [
             'currency'       => $invoice->getCurrency(),
+            'entrant_id'     => $invoice->getEntrantId(),
             'header'         => $invoice->getHeader(),
             'invoice_date'   => $invoice->getInvoiceDate()->format('Y-m-d'),
             'invoice_number' => $invoice->getInvoiceNumber(),

@@ -3,58 +3,37 @@ declare(strict_types=1);
 
 namespace IamPersistent\SimpleShop\Interactor;
 
-use DateTime;
 use Exception;
-use IamPersistent\SimpleShop\Entity\CreditCard;
 use IamPersistent\SimpleShop\Entity\Invoice;
-use IamPersistent\SimpleShop\Entity\Paid;
 use IamPersistent\SimpleShop\Entity\PaymentMethodInterface;
 use IamPersistent\SimpleShop\Exception\PaymentProcessingError;
-use Omnipay\Common\GatewayInterface;
-use Omnipay\Common\Message\ResponseInterface;
 
 final class ProcessPayment
 {
-    private $gateway;
-    private $insertInvoice;
+    /** @var array */
+    private $paymentProcessor;
+    private $saveInvoice;
 
-    public function __construct(GatewayInterface $gateway, InsertInvoiceInterface $insertInvoice)
+    public function __construct(SaveInvoiceInterface $saveInvoice, array $paymentProcessor)
     {
-        $this->gateway = $gateway;
-        $this->insertInvoice = $insertInvoice;
+        $this->paymentProcessor = $paymentProcessor;
+        $this->saveInvoice = $saveInvoice;
     }
 
-    public function handle(Invoice $invoice, PaymentMethodInterface $card)
+    public function handle(Invoice $invoice, PaymentMethodInterface $paymentMethod)
     {
-        $total = $invoice->getTotal();
-        $options = $this->extractCreditCardOptions($card);
-        $options['money'] = $total;
+        /** @var \IamPersistent\SimpleShop\Interactor\ProcessPaymentInterface $method */
+        $method = $this->paymentProcessor[$paymentMethod->getPaymentMethodType()];
+
 
         try {
-            /** @var ResponseInterface $response */
-            $response = $this->gateway->purchase($options)->send();
-            if ($response->isSuccessful()) {
-                $paid = (new Paid())
-                    ->setAmount($total)
-                    ->setAuthorizationCode($response->getCode())
-                    ->setPaymentMethod($card)
-                    ->setDate(new DateTime());
-                $invoice->setPaid($paid);
-                $this->insertInvoice->insert($invoice);
-            } elseif ($response->isRedirect()) {
-                $response->redirect();
-            } else {
-                throw new PaymentProcessingError($response->getMessage());
-            }
+            $paid = $method->handle($invoice->getTotal(), $paymentMethod);
+
+            $invoice->setPaid($paid);
+            $this->saveInvoice->save($invoice);
+
         } catch (Exception $e) {
             throw new PaymentProcessingError('Sorry, there was an error processing your payment. Please try again later.', 0, $e);
-        }
-    }
-
-    private function extractCreditCardOptions(CreditCard $card): array
-    {
-        if ($reference = $card->getCardReference()) {
-            return ['cardReference' => $reference];
         }
     }
 }
