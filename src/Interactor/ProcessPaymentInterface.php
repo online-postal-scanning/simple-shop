@@ -9,5 +9,5 @@ use Money\Money;
 
 interface ProcessPaymentInterface
 {
-    public function handle(Money $amount, PaymentMethodInterface $card): Paid;
+    public function handle(Money $amount, PaymentMethodInterface $paymentMethod): Paid;
 }

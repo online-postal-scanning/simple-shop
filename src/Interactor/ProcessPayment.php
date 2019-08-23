@@ -25,7 +25,6 @@ final class ProcessPayment
         /** @var \IamPersistent\SimpleShop\Interactor\ProcessPaymentInterface $method */
         $method = $this->paymentProcessor[$paymentMethod->getPaymentMethodType()];
 
-
         try {
             $paid = $method->handle($invoice->getTotal(), $paymentMethod);
 
