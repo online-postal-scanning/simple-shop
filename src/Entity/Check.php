@@ -38,6 +38,11 @@ final class Check implements PaymentMethodInterface
         return $this;
     }
 
+    public function getDisplaySummary(): string
+    {
+        return 'Check #' . $this->checkNumber;
+    }
+
     public function getId()
     {
         return $this->id;

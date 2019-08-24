@@ -5,6 +5,11 @@ namespace IamPersistent\SimpleShop\Entity;
 
 final class BalanceAdjustment implements PaymentMethodInterface
 {
+    public function getDisplaySummary(): string
+    {
+        return 'Balance Adjustment';
+    }
+
     public function getId()
     {
         return 1;

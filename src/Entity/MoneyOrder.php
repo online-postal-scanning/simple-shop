@@ -26,6 +26,11 @@ final class MoneyOrder implements PaymentMethodInterface
         return $this;
     }
 
+    public function getDisplaySummary(): string
+    {
+        return 'Money Order #' . $this->serialNumber;
+    }
+
     public function getId()
     {
         return $this->id;

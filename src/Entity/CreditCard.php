@@ -60,6 +60,11 @@ final class CreditCard implements PaymentMethodInterface
         return $this;
     }
 
+    public function getDisplaySummary(): string
+    {
+        return ucfirst(strtolower($this->brand)) . ' * ' . $this->lastFour;
+    }
+
     public function getExpirationDate(): DateTime
     {
         return $this->expirationDate;
