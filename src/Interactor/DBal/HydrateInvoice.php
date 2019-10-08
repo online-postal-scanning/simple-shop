@@ -30,6 +30,7 @@ final class HydrateInvoice
 
         return (new Invoice())
             ->setCurrency(new Currency($data['currency']))
+            ->setEntrantId($data['entrant_id'])
             ->setHeader($data['header'])
             ->setId($data['id'])
             ->setInvoiceNumber($data['invoice_number'])
