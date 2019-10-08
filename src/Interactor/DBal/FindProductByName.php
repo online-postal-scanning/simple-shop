@@ -12,7 +12,7 @@ final class FindProductByName extends DBalCommon implements FindProductByNameInt
     {
         $sql = "SELECT * FROM products WHERE name='$name'";
 
-        $productData = $this->connection->fetchArray($sql);
+        $productData = $this->connection->fetchAssoc($sql);
 
         return (new HydrateProduct)($productData);
     }
