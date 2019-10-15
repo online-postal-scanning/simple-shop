@@ -9,6 +9,8 @@ final class Product
 {
     /** @var bool */
     private $active;
+    /** @var \IamPersistent\SimpleShop\Entity\Category[] */
+    private $categories;
     /** @var string|null */
     private $description;
     /** @var mixed */
@@ -28,6 +30,18 @@ final class Product
     public function setActive(bool $active): Product
     {
         $this->active = $active;
+
+        return $this;
+    }
+
+    public function getCategories(): array
+    {
+        return $this->categories;
+    }
+
+    public function setCategories(array $categories): Product
+    {
+        $this->categories = $categories;
 
         return $this;
     }

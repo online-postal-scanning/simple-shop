@@ -28,7 +28,7 @@ final class SaveProduct extends DBalCommon implements SaveProductInterface
             $id = $this->connection->lastInsertId();
             $product->setId($id);
 
-            return true;
+            return $this->setProductCategories($product);
         } else {
             return false;
         }
@@ -40,7 +40,7 @@ final class SaveProduct extends DBalCommon implements SaveProductInterface
 
         $response = $this->connection->update('products', $data, $product->getId());
 
-        return true;
+        return $this->setProductCategories($product);
     }
 
     private function prepDataForPersistence(Product $product): array
@@ -55,5 +55,25 @@ final class SaveProduct extends DBalCommon implements SaveProductInterface
             'price' => $moneyToJson($product->getPrice()),
             'taxable' => $boolToSQL($product->isTaxable()),
         ];
+    }
+
+    private function setProductCategories(Product $product): bool
+    {
+        $this->connection->delete('product_categories', ['product_id' => $product->getId()]);
+
+        $inserts = [];
+        foreach ($product->getCategories() as $category) {
+            $inserts = [
+
+            ];
+        }
+
+        if (empty($inserts)) {
+            return true;
+        }
+
+        $this->connection->insert('product_categories', $inserts);
+
+        return true;
     }
 }

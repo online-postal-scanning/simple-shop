@@ -5,6 +5,7 @@ namespace IamPersistent\SimpleShop\Factory\DBal;
 
 use Doctrine\DBAL\Connection;
 use IamPersistent\SimpleShop\Interactor\DBal\DBalCommon;
+use IamPersistent\SimpleShop\Interactor\DBal\GatherCategoryDataForProduct;
 use IamPersistent\SimpleShop\Interactor\FindInvoiceByIdInterface;
 use IamPersistent\SimpleShop\Interactor\FindCardByIdInterface;
 use IamPersistent\SimpleShop\Interactor\FindCardByLastFourInterface;
@@ -44,6 +45,7 @@ final class DbalCommonFactory implements AbstractFactoryInterface
             FindCardByLastFourInterface::class,
             FindInvoiceByIdInterface::class,
             FindProductByNameInterface::class,
+            GatherCategoryDataForProduct::class,
             InsertCardInterface::class,
             InsertCheckInterface::class,
             InsertInvoiceInterface::class,
