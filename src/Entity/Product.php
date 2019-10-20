@@ -10,7 +10,7 @@ final class Product
     /** @var bool */
     private $active;
     /** @var \IamPersistent\SimpleShop\Entity\Category[] */
-    private $categories;
+    private $categories = [];
     /** @var string|null */
     private $description;
     /** @var mixed */
