@@ -3,11 +3,21 @@ declare(strict_types=1);
 
 namespace IamPersistent\SimpleShop\Interactor\DBal;
 
+use Doctrine\DBAL\Connection;
 use IamPersistent\SimpleShop\Entity\Invoice;
 use IamPersistent\SimpleShop\Interactor\FindInvoiceByIdInterface;
 
 final class FindInvoiceById extends DBalCommon implements FindInvoiceByIdInterface
 {
+    /** @var \IamPersistent\SimpleShop\Interactor\DBal\GatherCategoryDataForProduct  */
+    private $gatherCategories;
+
+    public function __construct(Connection $connection)
+    {
+        parent::__construct($connection);
+        $this->gatherCategories = new GatherCategoryDataForProduct($connection);
+    }
+
     public function find($id): ?Invoice
     {
         $sql = $this->sql($id);
@@ -53,6 +63,7 @@ SQL;
                 'is_taxable'   => $datum['is_taxable'],
                 'product'      => [
                     'active'      => $datum['active'],
+                    'categories'  => $this->gatherCategories->gather((int) $datum['product_id']),
                     'created_at'  => $datum['created_at'],
                     'description' => $datum['product_description'],
                     'id'          => $datum['product_id'],
