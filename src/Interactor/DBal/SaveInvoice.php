@@ -103,6 +103,8 @@ final class SaveInvoice extends DBalCommon implements SaveInvoiceInterface
 
     private function saveInvoiceItems(Invoice $invoice)
     {
+        $response = $this->connection->delete('invoice_items', ['invoice_id' => $invoice->getId()]);
+
         foreach ($invoice->getItems() as $item) {
             $this->saveItem->save($invoice, $item);
         }
