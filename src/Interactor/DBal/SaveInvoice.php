@@ -31,6 +31,26 @@ final class SaveInvoice extends DBalCommon implements SaveInvoiceInterface
         }
     }
 
+    private function getItemsToDelete(Invoice $invoice)
+    {
+        $invoiceId = (int) $invoice->getId();
+        foreach ($invoice->getItems() as $item) {
+            if ($id = $item->getId()) {
+                $ids[] = $item->getId();
+            }
+        }
+        if (empty($ids)) {
+            return false;
+        }
+        $activeIds = implode(',', $ids);
+
+        return <<<SQL
+DELETE FROM invoice_items
+WHERE invoice_id = $invoiceId
+AND id NOT IN ($activeIds)
+SQL;
+    }
+
     private function insertData(Invoice $invoice): bool
     {
         $this->connection->beginTransaction();
@@ -103,7 +123,9 @@ final class SaveInvoice extends DBalCommon implements SaveInvoiceInterface
 
     private function saveInvoiceItems(Invoice $invoice)
     {
-        $response = $this->connection->delete('invoice_items', ['invoice_id' => $invoice->getId()]);
+        if ($sql = $this->getItemsToDelete($invoice)) {
+            $this->connection->exec($sql);
+        }
 
         foreach ($invoice->getItems() as $item) {
             $this->saveItem->save($invoice, $item);
