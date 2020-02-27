@@ -43,7 +43,7 @@ final class ProcessCreditCard implements ProcessPaymentInterface
                 throw new PaymentProcessingError($response->getMessage());
             }
         } catch (Exception $e) {
-            throw new PaymentProcessingError('Sorry, there was an error processing your payment. Please try again later.', 0, $e);
+            throw new PaymentProcessingError($e->getMessage());
         }
     }
 
