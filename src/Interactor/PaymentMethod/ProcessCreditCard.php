@@ -40,10 +40,10 @@ final class ProcessCreditCard implements ProcessPaymentInterface
             } elseif ($response->isRedirect()) {
                 $response->redirect();
             } else {
-                throw new PaymentProcessingError($response->getMessage());
+                throw new PaymentProcessingError($response->getMessage(), (int) $response->getCode());
             }
         } catch (Exception $e) {
-            throw new PaymentProcessingError($e->getMessage());
+            throw new PaymentProcessingError($e->getMessage(), (int) $e->getCode(), $e->getPrevious());
         }
     }
 
