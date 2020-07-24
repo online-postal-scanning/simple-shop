@@ -40,6 +40,7 @@ class FindCardByIdCest
     private function cardData(): array
     {
         return [
+            'active'          => 0,
             'brand'           => 'Visa',
             'card_number'     => 'XXXXXXXXXXXX4242',
             'card_reference'  => '8675309',
@@ -54,6 +55,7 @@ class FindCardByIdCest
     private function expectedCreditCard(): CreditCard
     {
         return (new CreditCard())
+            ->setActive(false)
             ->setBrand('Visa')
             ->setCardNumber('XXXXXXXXXXXX4242')
             ->setCardReference('8675309')

@@ -7,6 +7,8 @@ use DateTime;
 
 final class CreditCard implements PaymentMethodInterface
 {
+    /** @var bool */
+    private $active;
     /** @var string */
     private $brand;
     /** @var string */
@@ -23,6 +25,18 @@ final class CreditCard implements PaymentMethodInterface
     private $ownerId;
     /** @var string|null */
     private $title;
+
+    public function isActive(): bool
+    {
+        return $this->active;
+    }
+
+    public function setActive(bool $active): CreditCard
+    {
+        $this->active = $active;
+
+        return $this;
+    }
 
     public function getBrand(): string
     {

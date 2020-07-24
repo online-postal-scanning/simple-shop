@@ -10,7 +10,10 @@ final class HydrateCreditCard
 {
     public function __invoke(array $cardData): CreditCard
     {
+        $sqlToBool = (new SQLToBool());
+
         return (new CreditCard())
+            ->setActive($sqlToBool($cardData['active']))
             ->setBrand($cardData['brand'])
             ->setCardNumber($cardData['card_number'])
             ->setCardReference($cardData['card_reference'])

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Iampersistent\SimpleShop\Interactor\Db;
+namespace Iampersistent\SimpleShop\Interactor\DBal;
 
 final class SQLToBool
 {
