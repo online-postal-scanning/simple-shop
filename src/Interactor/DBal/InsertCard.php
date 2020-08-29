@@ -22,13 +22,20 @@ final class InsertCard extends DBalCommon implements InsertCardInterface
         $omniCard = new OmniCreditCard(['number' => $creditCard->getCardNumber()]);
 
         $data = [
-            'brand' => (new PascalCase)($creditCard->getBrand()),
-            'card_number' => $omniCard->getNumberMasked(),
-            'card_reference' => $creditCard->getCardReference(),
+            'brand'           => (new PascalCase)($creditCard->getBrand()),
+            'card_number'     => $omniCard->getNumberMasked(),
+            'card_reference'  => $creditCard->getCardReference(),
+            'city'            => $creditCard->getCity(),
+            'country'         => $creditCard->getCountry(),
             'expiration_date' => $creditCard->getExpirationDate()->format('Y-m-d'),
-            'last_four' => $omniCard->getNumberLastFour(),
-            'owner_id' => $creditCard->getOwnerId(),
-            'title' => $creditCard->getTitle(),
+            'last_four'       => $omniCard->getNumberLastFour(),
+            'name_on_card'    => $creditCard->getNameOnCard(),
+            'owner_id'        => $creditCard->getOwnerId(),
+            'post_code'       => $creditCard->getPostCode(),
+            'state'           => $creditCard->getState(),
+            'street_1'        => $creditCard->getStreet1(),
+            'street_2'        => $creditCard->getStreet2(),
+            'title'           => $creditCard->getTitle(),
         ];
         $response = $this->connection->insert('credit_cards', $data);
         if (1 === $response) {
