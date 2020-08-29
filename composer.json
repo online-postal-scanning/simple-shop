@@ -11,13 +11,14 @@
     "iampersistent/money-helpers": "^0.0.3",
     "moneyphp/money": "^3.0@dev",
     "php": ">=7.2",
-    "psr/container": "^1.0@dev",
+    "psr/container": "^1.0",
     "league/omnipay": "^3",
     "robmorgan/phinx": "dev-master"
   },
   "require-dev": {
-    "codeception/codeception": "^2.4",
-    "ext-yaml": "*"
+    "codeception/codeception": "^4.0",
+    "ext-yaml": "*",
+    "codeception/module-asserts": "dev-master"
   },
   "repositories": {
   },
