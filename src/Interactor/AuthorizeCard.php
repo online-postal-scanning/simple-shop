@@ -35,13 +35,22 @@ final class AuthorizeCard
         $this->response = $this->gateway->createCard($options)->send();
 
         if ($this->response->isSuccessful()) {
+            $fullName = implode(' ', [$omniCreditCard->getFirstName(), $omniCreditCard->getLastName()]);
             $creditCard = (new CreditCard())
+                ->setActive(true)
                 ->setBrand($omniCreditCard->getBrand())
                 ->setCardNumber($omniCreditCard->getNumberMasked())
                 ->setCardReference($this->response->getCardReference())
+                ->setCity($omniCreditCard->getBillingCity())
+                ->setCountry($omniCreditCard->getBillingCountry())
                 ->setExpirationDate(new DateTime($omniCreditCard->getExpiryDate('Y-m-y')))
                 ->setLastFour($omniCreditCard->getNumberLastFour())
-                ->setOwnerId($ownerId);
+                ->setNameOnCard($fullName)
+                ->setOwnerId($ownerId)
+                ->setPostCode($omniCreditCard->getBillingPostcode())
+                ->setState($omniCreditCard->getBillingState())
+                ->setStreet1($omniCreditCard->getBillingAddress1())
+                ->setStreet2($omniCreditCard->getBillingAddress2());
             $this->insertCard->insert($creditCard);
 
             return $creditCard;
