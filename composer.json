@@ -18,9 +18,14 @@
   "require-dev": {
     "codeception/codeception": "^4.0",
     "ext-yaml": "*",
+    "omnipay/dummy": "dev-master",
     "codeception/module-asserts": "dev-master"
   },
   "repositories": {
+    "omnipay/dummy": {
+      "type": "vcs",
+      "url": "git@github.com:americas-mailbox/omnipay-dummy.git"
+    }
   },
   "minimum-stability": "dev",
   "autoload": {
