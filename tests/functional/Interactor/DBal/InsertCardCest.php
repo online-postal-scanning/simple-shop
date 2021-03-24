@@ -30,7 +30,6 @@ class InsertCardCest
 
     public function testInsert(FunctionalTester $I)
     {
-        print_r($this->insertCard); exit;
         $card = (new CreditCard())
           ->setActive(true)
           ->setBrand('Visa')
