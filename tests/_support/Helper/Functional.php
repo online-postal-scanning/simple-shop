@@ -29,7 +29,7 @@ class Functional extends \Codeception\Module
     {
         $tables = $this->connection->getSchemaManager()->listTableNames();
         foreach ($tables as $table) {
-            $this->connection->exec("DROP TABLE IF EXISTS $table;");
+            $this->connection->executeStatement("DROP TABLE IF EXISTS $table;");
         }
     }
 
@@ -42,8 +42,7 @@ class Functional extends \Codeception\Module
             'adapter'    => 'sqlite',
             'connection' => $this->getPDO()
         ];
-        $config = new Config($configArray);
-        $manager = new Manager($config, new StringInput(' '), new NullOutput());
+        $manager = new Manager((new Config($configArray)), new StringInput(' '), new NullOutput());
         $manager->migrate('test');
         $this->pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
     }
