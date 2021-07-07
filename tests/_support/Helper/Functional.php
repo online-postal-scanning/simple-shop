@@ -4,7 +4,7 @@ namespace Helper;
 // here you can define custom actions
 // all public methods declared in helper class will be available in $I
 use Doctrine\DBAL\Connection;
-use Doctrine\DBAL\Driver\PDOSqlite\Driver;
+use Doctrine\DBAL\Driver\PDO\SQLite\Driver;
 use PDO;
 use Phinx\Config\Config;
 use Phinx\Migration\Manager;
@@ -29,7 +29,7 @@ class Functional extends \Codeception\Module
     {
         $tables = $this->connection->getSchemaManager()->listTableNames();
         foreach ($tables as $table) {
-            $this->connection->exec("DROP TABLE IF EXISTS $table;");
+            $this->connection->executeStatement("DROP TABLE IF EXISTS $table;");
         }
     }
 
@@ -42,8 +42,7 @@ class Functional extends \Codeception\Module
             'adapter'    => 'sqlite',
             'connection' => $this->getPDO()
         ];
-        $config = new Config($configArray);
-        $manager = new Manager($config, new StringInput(' '), new NullOutput());
+        $manager = new Manager((new Config($configArray)), new StringInput(' '), new NullOutput());
         $manager->migrate('test');
         $this->pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
     }

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Tests\Unit\Interactor;
@@ -56,5 +57,11 @@ class ExtractExpirationDateCest
         $date = (new ExtractExpirationDate)('032019');
 
         $I->assertEquals(['month' => '03', 'year' => '19'], $date);
+    }
+
+    public function testExpirationYearAfter31(UnitTester $I)
+    {
+        $date = (new ExtractExpirationDate)('03/32');
+        $I->assertEquals(['month' => '03', 'year' => '32'], $date);
     }
 }

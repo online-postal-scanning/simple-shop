@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace IamPersistent\SimpleShop\Interactor;
@@ -43,7 +44,7 @@ final class AuthorizeCard
                 ->setCardReference($this->response->getCardReference())
                 ->setCity($omniCreditCard->getBillingCity())
                 ->setCountry($omniCreditCard->getBillingCountry())
-                ->setExpirationDate(new DateTime($omniCreditCard->getExpiryDate('Y-m-y')))
+                ->setExpirationDate(new DateTime($omniCreditCard->getExpiryDate('Y-m-d')))
                 ->setLastFour($omniCreditCard->getNumberLastFour())
                 ->setNameOnCard($fullName)
                 ->setOwnerId($ownerId)
