@@ -10,7 +10,7 @@
     "ext-json": "*",
     "ext-yaml": "*",
     "doctrine/dbal": "^2.12.1",
-    "iampersistent/money-helpers": "^v0.1.0",
+    "iampersistent/money-helpers": "^v0.2.0",
     "moneyphp/money": "^v4.0.5",
     "psr/container": "^1.0",
     "league/omnipay": "^3",
