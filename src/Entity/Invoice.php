@@ -31,8 +31,7 @@ final class Invoice
     private $subtotal;
     /** @var Money */
     private $taxes;
-    /** @var float|null */
-    private $taxRate;
+    private string|null $taxRate = null;
     /** @var Money */
     private $total;
 
@@ -178,13 +177,16 @@ final class Invoice
         return $this;
     }
 
-    public function getTaxRate(): ?float
+    public function getTaxRate(): string|null
     {
         return $this->taxRate;
     }
 
-    public function setTaxRate(?float $taxRate): Invoice
+    public function setTaxRate(string|float|null $taxRate): Invoice
     {
+        if (is_float($taxRate)) {
+            $taxRate = (string) $taxRate;
+        }
         $this->taxRate = $taxRate;
 
         return $this;

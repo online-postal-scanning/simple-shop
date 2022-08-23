@@ -40,7 +40,7 @@ final class HydrateInvoice
             ->setRecipientId($data['recipient_id'])
             ->setSubtotal($subtotal)
             ->setTaxes($taxes)
-            ->setTaxRate((float) $data['tax_rate'])
+            ->setTaxRate((string) $data['tax_rate'])
             ->setTotal($total);
     }
 
