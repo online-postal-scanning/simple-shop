@@ -18,9 +18,15 @@ final class FindProductByName extends DBalCommon implements FindProductByNameInt
         $this->gatherCategoryData = new GatherCategoryDataForProduct($connection);
     }
 
-    public function find(string $name): ?Product
+    public function find(string $name, bool $isActive = true): ?Product
     {
-        $sql = "SELECT * FROM products WHERE name='$name'";
+        $isActiveValue = (new BoolToSQL)($isActive);
+        $sql = <<<SQL
+SELECT * 
+FROM products 
+WHERE name='$name'
+AND active = $isActiveValue
+SQL;
 
         $productData = $this->connection->fetchAssoc($sql);
         if (empty($productData)) {
