@@ -7,5 +7,5 @@ use IamPersistent\SimpleShop\Entity\Product;
 
 interface FindProductByNameInterface
 {
-    public function find(string $name): ?Product;
+    public function find(string $name, bool $isActive = true): ?Product;
 }
