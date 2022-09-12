@@ -25,9 +25,10 @@ final class FindProductByName extends DBalCommon implements FindProductByNameInt
 SELECT * 
 FROM products 
 WHERE name='$name'
-AND active = $isActiveValue
 SQL;
-
+        if ($isActive) {
+            $sql .= ' AND active = 1';
+        }
         $productData = $this->connection->fetchAssoc($sql);
         if (empty($productData)) {
             return null;
