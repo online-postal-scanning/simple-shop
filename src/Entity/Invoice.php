@@ -35,6 +35,13 @@ class Invoice
     /** @var Money */
     private $total;
 
+    public function calculate(): void
+    {
+        $this->sumInvoiceItems();
+        $this->calculateTax();
+        $this->calculateTotal();
+    }
+
     public function getCurrency(): Currency
     {
         return $this->currency;
@@ -107,9 +114,12 @@ class Invoice
         return $this;
     }
 
-    public function addItem(InvoiceItem $invoiceItem): Invoice
+    public function addItem(InvoiceItem $invoiceItem, bool $recalculateTotal = true): Invoice
     {
         $this->items[] = $invoiceItem;
+        if ($recalculateTotal) {
+            $this->calculateInvoice();
+        }
 
         return $this;
     }
@@ -124,7 +134,10 @@ class Invoice
 
     public function setItems(array $items): Invoice
     {
-        $this->items = $items;
+        $this->items = [];
+        foreach ($items as $item) {
+            $this->addItem($item, false);
+        }
 
         return $this;
     }
@@ -202,5 +215,41 @@ class Invoice
         $this->total = $total;
 
         return $this;
+    }
+
+    private function calculateTax(): void
+    {
+        $taxableTotal = new Money(0, $this->getCurrency());
+        foreach ($this->getItems() as $item) {
+            if ($item->isTaxable()) {
+                $taxableTotal = $taxableTotal->add($item->getTotalAmount());
+            }
+        }
+        $taxes = $taxableTotal->multiply($this->getTaxRate());
+        $this->setTaxes($taxes);
+    }
+
+    private function calculateItem(InvoiceItem $item): void
+    {
+        $quantity = $item->getQuantity() ?? 1;
+        $totalAmount = $item->getAmount()->multiply($quantity);
+        $item->setTotalAmount($totalAmount);
+    }
+
+    private function calculateTotal(): void
+    {
+        $total = $this->getSubtotal();
+        $total = $total->add($this->getTaxes());
+        $this->setTotal($total);
+    }
+
+    private function sumInvoiceItems(): void
+    {
+        $sum = new Money(0, $this->getCurrency());
+        foreach ($this->getItems() as $item) {
+            $this->calculateItem($item);
+            $sum = $sum->add($item->getTotalAmount());
+        }
+        $this->setSubtotal($sum);
     }
 }
