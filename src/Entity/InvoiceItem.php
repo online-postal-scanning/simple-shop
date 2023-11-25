@@ -5,7 +5,7 @@ namespace IamPersistent\SimpleShop\Entity;
 
 use Money\Money;
 
-final class InvoiceItem
+class InvoiceItem
 {
     /** @var Money */
     private $amount;
