@@ -118,7 +118,7 @@ class Invoice
     {
         $this->items[] = $invoiceItem;
         if ($recalculateTotal) {
-            $this->calculateInvoice();
+            $this->calculate();
         }
 
         return $this;
