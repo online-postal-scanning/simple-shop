@@ -7,7 +7,7 @@ use DateTime;
 use Money\Currency;
 use Money\Money;
 
-final class Invoice
+class Invoice
 {
     /** @var Currency */
     private $currency;
