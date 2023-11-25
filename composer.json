@@ -17,9 +17,8 @@
     "robmorgan/phinx": "^0.15.4"
   },
   "require-dev": {
-    "codeception/codeception": "^4.1.18 || ^5.0",
     "omnipay/dummy": "dev-master",
-    "codeception/module-asserts": "^1.3.1"
+    "pestphp/pest": "^2.25"
   },
   "repositories": {
     "omnipay/dummy": {
@@ -38,6 +37,12 @@
       "Tests\\Fixture\\": "tests/_support/Fixture",
       "Tests\\Functional\\": "tests/functional",
       "Tests\\Unit\\": "tests/unit"
+    }
+  },
+  "config": {
+    "allow-plugins": {
+      "php-http/discovery": true,
+      "pestphp/pest-plugin": true
     }
   }
 }
