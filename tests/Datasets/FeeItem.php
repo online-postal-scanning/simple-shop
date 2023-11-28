@@ -4,6 +4,7 @@ use Money\Currency;
 use Money\Money;
 
 $currency = new Currency('USD');
+
 dataset('feeItemCalculateData', [
     'no base fee' =>
         ['.04', null, new Money(12585, $currency), new Money(503, $currency),],

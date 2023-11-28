@@ -6,7 +6,6 @@ use Money\Money;
 describe('FeeItem', function () {
     it('calculate the fee amount', function (
         string $feePercent,
-        
         ?Money $amount = null,
         Money $subTotal,
         Money $expectedAmount,
