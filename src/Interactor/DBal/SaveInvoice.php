@@ -71,6 +71,8 @@ SQL;
 
         } catch (Exception $e) {
             $this->connection->rollBack();
+
+            return false;
         }
 
         $this->connection->commit();
