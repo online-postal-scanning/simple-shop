@@ -31,7 +31,7 @@ final class ProcessPayment
             $invoice->setPaid($paid);
             $this->saveInvoice->save($invoice);
         } catch (Exception $e) {
-            throw new PaymentProcessingError($e->getMessage(),$e->getCode(), $e->getPrevious());
+            throw new PaymentProcessingError($e->getMessage(), $e->getCode(), $e->getPrevious());
         }
     }
 }

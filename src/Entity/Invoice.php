@@ -9,31 +9,21 @@ use Money\Money;
 
 class Invoice
 {
-    /** @var Currency */
-    private $currency;
-    /** @var mixed */
-    private $entrantId;
-    /** @var string */
-    private $header = '';
-    /** @var mixed */
-    private $id;
-    /** @var DateTime */
-    private $invoiceDate;
-    /** @var string|null */
-    private $invoiceNumber;
+    private Currency $currency;
+    private mixed $entrantId;
+    private bool $hasFeeItem = false;
+    private string $header = '';
+    private mixed $id;
+    private DateTime $invoiceDate;
+    private ?string $invoiceNumber = null;
     /** @var InvoiceItem[] */
-    private $items = [];
-    /** @var mixed */
-    private $recipientId;
-    /** @var Paid|null */
-    private $paid;
-    /** @var Money */
-    private $subtotal;
-    /** @var Money */
-    private $taxes;
+    private array $items = [];
+    private mixed $recipientId;
+    private ?Paid $paid;
+    private Money $subtotal;
+    private Money $taxes;
     private string|null $taxRate = null;
-    /** @var Money */
-    private $total;
+    private Money $total;
 
     public function calculate(): void
     {
@@ -137,6 +127,9 @@ class Invoice
         $this->items = [];
         foreach ($items as $item) {
             $this->addItem($item, false);
+            if ($item instanceof FeeItem) {
+                $this->hasFeeItem = true;
+            }
         }
 
         return $this;
@@ -231,6 +224,9 @@ class Invoice
 
     private function calculateItem(InvoiceItem $item): void
     {
+        if ($item instanceof FeeItem) {
+            return;
+        }
         $quantity = $item->getQuantity() ?? 1;
         $totalAmount = $item->getAmount()->multiply($quantity);
         $item->setTotalAmount($totalAmount);
@@ -243,12 +239,28 @@ class Invoice
         $this->setTotal($total);
     }
 
+    private function getFeeItem(): ?FeeItem
+    {
+        foreach ($this->getItems() as $item) {
+            if ($item instanceof FeeItem) {
+                return $item;
+            }
+        }
+
+        return null;
+    }
+
     private function sumInvoiceItems(): void
     {
         $sum = new Money(0, $this->getCurrency());
         foreach ($this->getItems() as $item) {
             $this->calculateItem($item);
             $sum = $sum->add($item->getTotalAmount());
+        }
+        if ($this->hasFeeItem) {
+            $feeItem = $this->getFeeItem();
+            $feeItem->calculate($sum);
+            $sum = $sum->add($feeItem->getTotalAmount());
         }
         $this->setSubtotal($sum);
     }
