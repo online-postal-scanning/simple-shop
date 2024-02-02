@@ -61,13 +61,21 @@ final class HydratePaid
     private function getCreditCard(array $paidData): CreditCard
     {
         $data = [
+            'active'          => $paidData['active'],
             'brand'           => $paidData['brand'],
             'card_number'     => $paidData['last_four'],
             'card_reference'  => $paidData['card_reference'],
+            'city'            => $paidData['city'],
+            'country'         => $paidData['country'],
             'expiration_date' => $paidData['expiration_date'],
             'id'              => $paidData['id'],
             'last_four'       => $paidData['last_four'],
             'owner_id'        => $paidData['owner_id'],
+            'name_on_card'    => $paidData['name_on_card'],
+            'post_code'       => $paidData['post_code'],
+            'state'           => $paidData['state'],
+            'street_1'        => $paidData['street_1'],
+            'street_2'        => $paidData['street_2'],
             'title'           => $paidData['title'],
         ];
 
