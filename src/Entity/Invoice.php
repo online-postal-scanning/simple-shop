@@ -10,10 +10,10 @@ use Money\Money;
 class Invoice
 {
     private Currency $currency;
-    private mixed $entrantId;
+    private mixed $entrantId = null;
     private bool $hasFeeItem = false;
     private string $header = '';
-    private mixed $id;
+    private mixed $id = null;
     private DateTime $invoiceDate;
     private ?string $invoiceNumber = null;
     /** @var InvoiceItem[] */
