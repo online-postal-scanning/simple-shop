@@ -24,11 +24,11 @@ final class SaveInvoice extends DBalCommon implements SaveInvoiceInterface
 
     public function save(Invoice $invoice): bool
     {
-        if ((new ObjectHasId)($invoice)) {
+        if ($invoice->getId()) {
             return $this->updateData($invoice);
-        } else {
-            return $this->insertData($invoice);
         }
+
+        return $this->insertData($invoice);
     }
 
     private function getItemsToDelete(Invoice $invoice)

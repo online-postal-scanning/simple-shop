@@ -11,11 +11,11 @@ final class SaveInvoiceItem extends DBalCommon
 {
     public function save(Invoice $invoice, InvoiceItem $invoiceItem): bool
     {
-        if ((new ObjectHasId)($invoiceItem)) {
+        if ($invoiceItem->getId()) {
             return $this->updateData($invoice, $invoiceItem);
-        } else {
-            return $this->insertData($invoice, $invoiceItem);
         }
+
+        return $this->insertData($invoice, $invoiceItem);
     }
 
     private function insertData(Invoice $invoice, InvoiceItem $invoiceItem): bool
