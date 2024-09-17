@@ -19,10 +19,10 @@ class Invoice
     /** @var InvoiceItem[] */
     private array $items = [];
     private mixed $recipientId;
-    private ?Paid $paid;
+    private ?Paid $paid = null;
     private Money $subtotal;
     private Money $taxes;
-    private string|null $taxRate = null;
+    private ?string $taxRate = null;
     private Money $total;
 
     public function calculate(): void
