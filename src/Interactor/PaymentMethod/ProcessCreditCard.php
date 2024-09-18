@@ -40,7 +40,7 @@ final class ProcessCreditCard implements ProcessPaymentInterface
             } elseif ($response->isRedirect()) {
                 $response->redirect();
             } else {
-                throw new PaymentProcessingError($response->getMessage(), (int) $response->getCode());
+                $this->throwErrorFromResponse($response);
             }
         } catch (Exception $e) {
             throw new PaymentProcessingError($e->getMessage(), (int) $e->getCode(), $e->getPrevious());
@@ -52,5 +52,11 @@ final class ProcessCreditCard implements ProcessPaymentInterface
         if ($reference = $card->getCardReference()) {
             return ['cardReference' => $reference];
         }
+    }
+
+    private function throwErrorFromResponse(ResponseInterface $response): void
+    {
+        $message = "The bank responsed with: {$response->getMessage()}";
+        throw new PaymentProcessingError($message, (int) $response->getCode());
     }
 }
