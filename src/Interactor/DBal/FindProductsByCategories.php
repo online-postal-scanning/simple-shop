@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace IamPersistent\SimpleShop\Interactor\DBal;
+namespace OLPS\SimpleShop\Interactor\DBal;
 
-use IamPersistent\SimpleShop\Entity\Product;
-use IamPersistent\SimpleShop\Interactor\FindProductByNameInterface;
-use IamPersistent\SimpleShop\Interactor\FindProductsByCategoriesInterface;
+use OLPS\SimpleShop\Entity\Product;
+use OLPS\SimpleShop\Interactor\FindProductByNameInterface;
+use OLPS\SimpleShop\Interactor\FindProductsByCategoriesInterface;
 
 final class FindProductsByCategories extends DBalCommon implements FindProductsByCategoriesInterface
 {

@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace IamPersistent\SimpleShop\Factory;
+namespace OLPS\SimpleShop\Factory;
 
-use IamPersistent\SimpleShop\Interactor\AuthorizeCard;
-use IamPersistent\SimpleShop\Interactor\InsertCardInterface;
+use OLPS\SimpleShop\Interactor\AuthorizeCard;
+use OLPS\SimpleShop\Interactor\InsertCardInterface;
 use Omnipay\Common\GatewayInterface;
 use Psr\Container\ContainerInterface;
 

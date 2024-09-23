@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace IamPersistent\SimpleShop\Interactor;
+namespace OLPS\SimpleShop\Interactor;
 
-use IamPersistent\SimpleShop\Entity\Paid;
-use IamPersistent\SimpleShop\Entity\PaymentMethodInterface;
+use OLPS\SimpleShop\Entity\Paid;
+use OLPS\SimpleShop\Entity\PaymentMethodInterface;
 use Money\Money;
 
 interface ProcessPaymentInterface

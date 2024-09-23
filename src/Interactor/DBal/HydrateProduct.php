@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace IamPersistent\SimpleShop\Interactor\DBal;
+namespace OLPS\SimpleShop\Interactor\DBal;
 
 use AMB\Interactor\Db\SQLToBool;
 use IamPersistent\Money\Interactor\JsonToMoney;
-use IamPersistent\SimpleShop\Entity\Product;
+use OLPS\SimpleShop\Entity\Product;
 
 final class HydrateProduct
 {

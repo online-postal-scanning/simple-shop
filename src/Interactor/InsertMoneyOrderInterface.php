@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace IamPersistent\SimpleShop\Interactor;
+namespace OLPS\SimpleShop\Interactor;
 
-use IamPersistent\SimpleShop\Entity\MoneyOrder;
+use OLPS\SimpleShop\Entity\MoneyOrder;
 
 interface InsertMoneyOrderInterface
 {

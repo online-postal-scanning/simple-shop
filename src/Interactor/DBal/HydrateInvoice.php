@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace IamPersistent\SimpleShop\Interactor\DBal;
+namespace OLPS\SimpleShop\Interactor\DBal;
 
 use DateTime;
 use IamPersistent\Money\Interactor\JsonToMoney;
-use IamPersistent\SimpleShop\Entity\Invoice;
-use IamPersistent\SimpleShop\Entity\InvoiceItem;
+use OLPS\SimpleShop\Entity\Invoice;
+use OLPS\SimpleShop\Entity\InvoiceItem;
 use Money\Currency;
 
 final class HydrateInvoice

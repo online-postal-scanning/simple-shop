@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace IamPersistent\SimpleShop\Interactor\DBal;
+namespace OLPS\SimpleShop\Interactor\DBal;
 
 use DateTime;
-use IamPersistent\SimpleShop\Entity\MoneyOrder;
+use OLPS\SimpleShop\Entity\MoneyOrder;
 
 final class HydrateMoneyOrder
 {

@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace IamPersistent\SimpleShop\Factory;
+namespace OLPS\SimpleShop\Factory;
 
-use IamPersistent\SimpleShop\Interactor\InsertInvoiceInterface;
-use IamPersistent\SimpleShop\Interactor\ProcessPayment;
+use OLPS\SimpleShop\Interactor\InsertInvoiceInterface;
+use OLPS\SimpleShop\Interactor\ProcessPayment;
 use Omnipay\Common\GatewayInterface;
 use Psr\Container\ContainerInterface;
 

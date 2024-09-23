@@ -3,5 +3,5 @@
 composer.phar
 composer.lock
 phinx.yml
-tests/_support/_generated
+old-tests/_support/_generated
 vendor/

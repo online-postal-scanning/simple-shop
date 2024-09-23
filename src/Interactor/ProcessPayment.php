@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace IamPersistent\SimpleShop\Interactor;
+namespace OLPS\SimpleShop\Interactor;
 
 use Exception;
-use IamPersistent\SimpleShop\Entity\Invoice;
-use IamPersistent\SimpleShop\Entity\PaymentMethodInterface;
-use IamPersistent\SimpleShop\Exception\PaymentProcessingError;
+use OLPS\SimpleShop\Entity\Invoice;
+use OLPS\SimpleShop\Entity\PaymentMethodInterface;
+use OLPS\SimpleShop\Exception\PaymentProcessingError;
 
 final class ProcessPayment
 {
@@ -22,7 +22,7 @@ final class ProcessPayment
 
     public function handle(Invoice $invoice, PaymentMethodInterface $paymentMethod)
     {
-        /** @var \IamPersistent\SimpleShop\Interactor\ProcessPaymentInterface $method */
+        /** @var \OLPS\SimpleShop\Interactor\ProcessPaymentInterface $method */
         $method = $this->paymentProcessor[$paymentMethod->getPaymentMethodType()];
 
         try {

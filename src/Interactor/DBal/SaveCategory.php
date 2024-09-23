@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace IamPersistent\SimpleShop\Interactor\DBal;
+namespace OLPS\SimpleShop\Interactor\DBal;
 
-use IamPersistent\SimpleShop\Entity\Category;
-use IamPersistent\SimpleShop\Interactor\ObjectHasId;
-use IamPersistent\SimpleShop\Interactor\SaveCategoryInterface;
+use OLPS\SimpleShop\Entity\Category;
+use OLPS\SimpleShop\Interactor\ObjectHasId;
+use OLPS\SimpleShop\Interactor\SaveCategoryInterface;
 
 final class SaveCategory extends DBalCommon implements SaveCategoryInterface
 {

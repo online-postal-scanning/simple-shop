@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace IamPersistent\SimpleShop\Interactor\DBal;
+namespace OLPS\SimpleShop\Interactor\DBal;
 
 use IamPersistent\Money\Interactor\MoneyToJson;
-use IamPersistent\SimpleShop\Entity\Product;
-use IamPersistent\SimpleShop\Interactor\ObjectHasId;
-use IamPersistent\SimpleShop\Interactor\SaveProductInterface;
+use OLPS\SimpleShop\Entity\Product;
+use OLPS\SimpleShop\Interactor\ObjectHasId;
+use OLPS\SimpleShop\Interactor\SaveProductInterface;
 
 final class SaveProduct extends DBalCommon implements SaveProductInterface
 {

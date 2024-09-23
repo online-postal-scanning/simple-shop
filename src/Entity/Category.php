@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace IamPersistent\SimpleShop\Entity;
+namespace OLPS\SimpleShop\Entity;
 
 final class Category
 {

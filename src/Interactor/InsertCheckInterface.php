@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace IamPersistent\SimpleShop\Interactor;
+namespace OLPS\SimpleShop\Interactor;
 
-use IamPersistent\SimpleShop\Entity\Check;
+use OLPS\SimpleShop\Entity\Check;
 
 interface InsertCheckInterface
 {

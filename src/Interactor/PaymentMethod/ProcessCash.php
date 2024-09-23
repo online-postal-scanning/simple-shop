@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace IamPersistent\SimpleShop\Interactor\PaymentMethod;
+namespace OLPS\SimpleShop\Interactor\PaymentMethod;
 
 use DateTime;
-use IamPersistent\SimpleShop\Entity\Paid;
-use IamPersistent\SimpleShop\Entity\PaymentMethodInterface;
-use IamPersistent\SimpleShop\Interactor\ProcessPaymentInterface;
+use OLPS\SimpleShop\Entity\Paid;
+use OLPS\SimpleShop\Entity\PaymentMethodInterface;
+use OLPS\SimpleShop\Interactor\ProcessPaymentInterface;
 use Money\Money;
 
 final class ProcessCash implements ProcessPaymentInterface

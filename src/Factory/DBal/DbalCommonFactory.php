@@ -1,24 +1,24 @@
 <?php
 declare(strict_types=1);
 
-namespace IamPersistent\SimpleShop\Factory\DBal;
+namespace OLPS\SimpleShop\Factory\DBal;
 
 use Doctrine\DBAL\Connection;
-use IamPersistent\SimpleShop\Interactor\DBal\DBalCommon;
-use IamPersistent\SimpleShop\Interactor\DBal\GatherCategoryDataForProduct;
-use IamPersistent\SimpleShop\Interactor\FindInvoiceByIdInterface;
-use IamPersistent\SimpleShop\Interactor\FindCardByIdInterface;
-use IamPersistent\SimpleShop\Interactor\FindCardByLastFourInterface;
-use IamPersistent\SimpleShop\Interactor\FindProductByNameInterface;
-use IamPersistent\SimpleShop\Interactor\InsertCardInterface;
-use IamPersistent\SimpleShop\Interactor\InsertCheckInterface;
-use IamPersistent\SimpleShop\Interactor\InsertInvoiceInterface;
-use IamPersistent\SimpleShop\Interactor\InsertMoneyOrderInterface;
-use IamPersistent\SimpleShop\Interactor\PaymentMethod\ProcessCheck;
-use IamPersistent\SimpleShop\Interactor\PaymentMethod\ProcessMoneyOrder;
-use IamPersistent\SimpleShop\Interactor\SaveInvoiceInterface;
-use IamPersistent\SimpleShop\Interactor\SaveProductInterface;
-use IamPersistent\SimpleShop\Interactor\UpdateInvoiceInterface;
+use OLPS\SimpleShop\Interactor\DBal\DBalCommon;
+use OLPS\SimpleShop\Interactor\DBal\GatherCategoryDataForProduct;
+use OLPS\SimpleShop\Interactor\FindInvoiceByIdInterface;
+use OLPS\SimpleShop\Interactor\FindCardByIdInterface;
+use OLPS\SimpleShop\Interactor\FindCardByLastFourInterface;
+use OLPS\SimpleShop\Interactor\FindProductByNameInterface;
+use OLPS\SimpleShop\Interactor\InsertCardInterface;
+use OLPS\SimpleShop\Interactor\InsertCheckInterface;
+use OLPS\SimpleShop\Interactor\InsertInvoiceInterface;
+use OLPS\SimpleShop\Interactor\InsertMoneyOrderInterface;
+use OLPS\SimpleShop\Interactor\PaymentMethod\ProcessCheck;
+use OLPS\SimpleShop\Interactor\PaymentMethod\ProcessMoneyOrder;
+use OLPS\SimpleShop\Interactor\SaveInvoiceInterface;
+use OLPS\SimpleShop\Interactor\SaveProductInterface;
+use OLPS\SimpleShop\Interactor\UpdateInvoiceInterface;
 use Psr\Container\ContainerInterface;
 use Zend\ServiceManager\AbstractFactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;

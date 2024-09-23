@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace IamPersistent\SimpleShop\Interactor\DBal;
+namespace OLPS\SimpleShop\Interactor\DBal;
 
 use Doctrine\DBAL\Connection;
-use IamPersistent\SimpleShop\Interactor\TotalInvoice;
+use OLPS\SimpleShop\Interactor\TotalInvoice;
 
 abstract class AbstractInvoice extends DBalCommon
 {

@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace IamPersistent\SimpleShop\Interactor\DBal;
+namespace OLPS\SimpleShop\Interactor\DBal;
 
-use IamPersistent\SimpleShop\Entity\Invoice;
-use IamPersistent\SimpleShop\Entity\InvoiceItem;
-use IamPersistent\SimpleShop\Interactor\ObjectHasId;
+use OLPS\SimpleShop\Entity\Invoice;
+use OLPS\SimpleShop\Entity\InvoiceItem;
+use OLPS\SimpleShop\Interactor\ObjectHasId;
 
 final class SaveInvoiceItem extends DBalCommon
 {

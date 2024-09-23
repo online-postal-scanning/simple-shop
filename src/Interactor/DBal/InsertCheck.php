@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace IamPersistent\SimpleShop\Interactor\DBal;
+namespace OLPS\SimpleShop\Interactor\DBal;
 
-use IamPersistent\SimpleShop\Entity\Check;
-use IamPersistent\SimpleShop\Interactor\InsertCheckInterface;
+use OLPS\SimpleShop\Entity\Check;
+use OLPS\SimpleShop\Interactor\InsertCheckInterface;
 
 final class InsertCheck extends DBalCommon implements InsertCheckInterface
 {

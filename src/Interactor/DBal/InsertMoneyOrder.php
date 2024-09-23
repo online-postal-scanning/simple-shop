@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace IamPersistent\SimpleShop\Interactor\DBal;
+namespace OLPS\SimpleShop\Interactor\DBal;
 
-use IamPersistent\SimpleShop\Entity\MoneyOrder;
-use IamPersistent\SimpleShop\Interactor\InsertMoneyOrderInterface;
+use OLPS\SimpleShop\Entity\MoneyOrder;
+use OLPS\SimpleShop\Interactor\InsertMoneyOrderInterface;
 
 final class InsertMoneyOrder extends DBalCommon implements InsertMoneyOrderInterface
 {

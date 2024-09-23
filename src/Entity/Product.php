@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace IamPersistent\SimpleShop\Entity;
+namespace OLPS\SimpleShop\Entity;
 
 use Money\Money;
 
@@ -9,7 +9,7 @@ final class Product
 {
     /** @var bool */
     private $active;
-    /** @var \IamPersistent\SimpleShop\Entity\Category[] */
+    /** @var \OLPS\SimpleShop\Entity\Category[] */
     private $categories = [];
     /** @var string|null */
     private $description;

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace IamPersistent\SimpleShop\Interactor;
+namespace OLPS\SimpleShop\Interactor;
 
 final class ExtractExpirationDate
 {

@@ -1,5 +1,5 @@
 {
-  "name": "iampersistent/simple-shop",
+  "name": "olps/simple-shop",
   "type": "library",
   "description": "A small feature set ecommerce library",
   "keywords": ["ecommerce"],
@@ -10,34 +10,26 @@
     "ext-json": "*",
     "ext-yaml": "*",
     "doctrine/dbal": "^2.12.1",
-    "iampersistent/money-helpers": "^v0.2.0",
+    "olps/money-helpers": "^v1.0.0",
     "moneyphp/money": "^v4.0.5",
     "psr/container": "^1.0 || ^2.0",
     "league/omnipay": "^3",
     "robmorgan/phinx": "^0.15.4"
   },
   "require-dev": {
-    "omnipay/dummy": "dev-master",
     "pestphp/pest": "^2.25",
-    "mockery/mockery": "^1.6"
-  },
-  "repositories": {
-    "omnipay/dummy": {
-      "type": "vcs",
-      "url": "git@github.com:americas-mailbox/omnipay-dummy.git"
-    }
+    "mockery/mockery": "^1.6",
+    "phpunit/phpunit": "^10.5"
   },
   "minimum-stability": "stable",
   "autoload": {
     "psr-4": {
-      "IamPersistent\\SimpleShop\\": "src/"
+      "OLPS\\SimpleShop\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Tests\\Fixture\\": "tests/_support/Fixture",
-      "Tests\\Functional\\": "tests/functional",
-      "Tests\\Unit\\": "tests/unit"
+      "Tests\\Unit\\OLPS\\SimpleShop\\": "tests/Unit"
     }
   },
   "config": {

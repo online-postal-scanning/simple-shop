@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace IamPersistent\SimpleShop\Interactor;
+namespace OLPS\SimpleShop\Interactor;
 
 use DateTime;
-use IamPersistent\SimpleShop\Entity\CreditCard;
-use IamPersistent\SimpleShop\Interactor\DBal\InsertCard;
+use OLPS\SimpleShop\Entity\CreditCard;
+use OLPS\SimpleShop\Interactor\DBal\InsertCard;
 use Omnipay\Common\CreditCard as OmniCreditCard;
 use Omnipay\Common\GatewayInterface;
 use Omnipay\Common\Message\ResponseInterface;

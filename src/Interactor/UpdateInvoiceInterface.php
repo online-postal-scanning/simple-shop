@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace IamPersistent\SimpleShop\Interactor;
+namespace OLPS\SimpleShop\Interactor;
 
-use IamPersistent\SimpleShop\Entity\Invoice;
+use OLPS\SimpleShop\Entity\Invoice;
 
 interface UpdateInvoiceInterface
 {

@@ -1,18 +1,18 @@
 <?php
 declare(strict_types=1);
 
-namespace IamPersistent\SimpleShop\Interactor\DBal;
+namespace OLPS\SimpleShop\Interactor\DBal;
 
 use DateTime;
 use IamPersistent\Money\Interactor\JsonToMoney;
-use IamPersistent\SimpleShop\Entity\BalanceAdjustment;
-use IamPersistent\SimpleShop\Entity\Cash;
-use IamPersistent\SimpleShop\Entity\Check;
-use IamPersistent\SimpleShop\Entity\CreditCard;
-use IamPersistent\SimpleShop\Entity\MoneyOrder;
-use IamPersistent\SimpleShop\Entity\Paid;
-use IamPersistent\SimpleShop\Entity\PaymentMethodInterface;
-use IamPersistent\SimpleShop\Entity\Unknown;
+use OLPS\SimpleShop\Entity\BalanceAdjustment;
+use OLPS\SimpleShop\Entity\Cash;
+use OLPS\SimpleShop\Entity\Check;
+use OLPS\SimpleShop\Entity\CreditCard;
+use OLPS\SimpleShop\Entity\MoneyOrder;
+use OLPS\SimpleShop\Entity\Paid;
+use OLPS\SimpleShop\Entity\PaymentMethodInterface;
+use OLPS\SimpleShop\Entity\Unknown;
 
 final class HydratePaid
 {

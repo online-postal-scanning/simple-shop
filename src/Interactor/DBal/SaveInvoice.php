@@ -1,19 +1,19 @@
 <?php
 declare(strict_types=1);
 
-namespace IamPersistent\SimpleShop\Interactor\DBal;
+namespace OLPS\SimpleShop\Interactor\DBal;
 
 use Doctrine\DBAL\Connection;
 use Exception;
 use IamPersistent\Money\Interactor\MoneyToJson;
-use IamPersistent\SimpleShop\Entity\Invoice;
-use IamPersistent\SimpleShop\Entity\Paid;
-use IamPersistent\SimpleShop\Interactor\ObjectHasId;
-use IamPersistent\SimpleShop\Interactor\SaveInvoiceInterface;
+use OLPS\SimpleShop\Entity\Invoice;
+use OLPS\SimpleShop\Entity\Paid;
+use OLPS\SimpleShop\Interactor\ObjectHasId;
+use OLPS\SimpleShop\Interactor\SaveInvoiceInterface;
 
 final class SaveInvoice extends DBalCommon implements SaveInvoiceInterface
 {
-    /** @var \IamPersistent\SimpleShop\Interactor\DBal\SaveInvoiceItem */
+    /** @var \OLPS\SimpleShop\Interactor\DBal\SaveInvoiceItem */
     private $saveItem;
 
     public function __construct(Connection $connection)

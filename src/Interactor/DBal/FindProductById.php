@@ -1,15 +1,15 @@
 <?php
 declare(strict_types=1);
 
-namespace IamPersistent\SimpleShop\Interactor\DBal;
+namespace OLPS\SimpleShop\Interactor\DBal;
 
 use Doctrine\DBAL\Connection;
-use IamPersistent\SimpleShop\Entity\Product;
-use IamPersistent\SimpleShop\Interactor\FindProductByIdInterface;
+use OLPS\SimpleShop\Entity\Product;
+use OLPS\SimpleShop\Interactor\FindProductByIdInterface;
 
 final class FindProductById extends DBalCommon implements FindProductByIdInterface
 {
-    /** @var \IamPersistent\SimpleShop\Interactor\DBal\GatherCategoryDataForProduct */
+    /** @var \OLPS\SimpleShop\Interactor\DBal\GatherCategoryDataForProduct */
     private $gatherCategoryData;
 
     public function __construct(Connection $connection)

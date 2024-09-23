@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace IamPersistent\SimpleShop\Interactor\DBal;
+namespace OLPS\SimpleShop\Interactor\DBal;
 
-use IamPersistent\SimpleShop\Entity\CreditCard;
-use IamPersistent\SimpleShop\Interactor\ObjectHasId;
-use IamPersistent\SimpleShop\Interactor\PascalCase;
-use IamPersistent\SimpleShop\Interactor\SaveCardInterface;
+use OLPS\SimpleShop\Entity\CreditCard;
+use OLPS\SimpleShop\Interactor\ObjectHasId;
+use OLPS\SimpleShop\Interactor\PascalCase;
+use OLPS\SimpleShop\Interactor\SaveCardInterface;
 use Omnipay\Common\CreditCard as OmniCreditCard;
 
 final class SaveCard extends DBalCommon implements SaveCardInterface

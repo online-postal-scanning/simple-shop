@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace IamPersistent\SimpleShop\Interactor\DBal;
+namespace OLPS\SimpleShop\Interactor\DBal;
 
 use DateTime;
-use IamPersistent\SimpleShop\Entity\CreditCard;
+use OLPS\SimpleShop\Entity\CreditCard;
 
 final class HydrateCreditCard
 {

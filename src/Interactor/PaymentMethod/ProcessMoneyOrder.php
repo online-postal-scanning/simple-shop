@@ -1,18 +1,18 @@
 <?php
 declare(strict_types=1);
 
-namespace IamPersistent\SimpleShop\Interactor\PaymentMethod;
+namespace OLPS\SimpleShop\Interactor\PaymentMethod;
 
 use DateTime;
-use IamPersistent\SimpleShop\Entity\Paid;
-use IamPersistent\SimpleShop\Entity\PaymentMethodInterface;
-use IamPersistent\SimpleShop\Interactor\InsertMoneyOrderInterface;
-use IamPersistent\SimpleShop\Interactor\ProcessPaymentInterface;
+use OLPS\SimpleShop\Entity\Paid;
+use OLPS\SimpleShop\Entity\PaymentMethodInterface;
+use OLPS\SimpleShop\Interactor\InsertMoneyOrderInterface;
+use OLPS\SimpleShop\Interactor\ProcessPaymentInterface;
 use Money\Money;
 
 final class ProcessMoneyOrder implements ProcessPaymentInterface
 {
-    /** @var \IamPersistent\SimpleShop\Interactor\InsertMoneyOrderInterface */
+    /** @var \OLPS\SimpleShop\Interactor\InsertMoneyOrderInterface */
     private $insertMoneyOrder;
 
     public function __construct(InsertMoneyOrderInterface $insertMoneyOrder)

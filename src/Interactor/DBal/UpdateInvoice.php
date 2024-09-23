@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace IamPersistent\SimpleShop\Interactor\DBal;
+namespace OLPS\SimpleShop\Interactor\DBal;
 
-use IamPersistent\SimpleShop\Entity\Invoice;
-use IamPersistent\SimpleShop\Interactor\UpdateInvoiceInterface;
+use OLPS\SimpleShop\Entity\Invoice;
+use OLPS\SimpleShop\Interactor\UpdateInvoiceInterface;
 
 final class UpdateInvoice extends AbstractInvoice implements UpdateInvoiceInterface
 {

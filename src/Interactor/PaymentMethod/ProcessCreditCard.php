@@ -1,15 +1,15 @@
 <?php
 declare(strict_types=1);
 
-namespace IamPersistent\SimpleShop\Interactor\PaymentMethod;
+namespace OLPS\SimpleShop\Interactor\PaymentMethod;
 
 use DateTime;
 use Exception;
-use IamPersistent\SimpleShop\Entity\CreditCard;
-use IamPersistent\SimpleShop\Entity\Paid;
-use IamPersistent\SimpleShop\Entity\PaymentMethodInterface;
-use IamPersistent\SimpleShop\Exception\PaymentProcessingError;
-use IamPersistent\SimpleShop\Interactor\ProcessPaymentInterface;
+use OLPS\SimpleShop\Entity\CreditCard;
+use OLPS\SimpleShop\Entity\Paid;
+use OLPS\SimpleShop\Entity\PaymentMethodInterface;
+use OLPS\SimpleShop\Exception\PaymentProcessingError;
+use OLPS\SimpleShop\Interactor\ProcessPaymentInterface;
 use Money\Money;
 use Omnipay\Common\GatewayInterface;
 use Omnipay\Common\Message\ResponseInterface;

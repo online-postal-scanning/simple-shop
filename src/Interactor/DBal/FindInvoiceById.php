@@ -1,15 +1,15 @@
 <?php
 declare(strict_types=1);
 
-namespace IamPersistent\SimpleShop\Interactor\DBal;
+namespace OLPS\SimpleShop\Interactor\DBal;
 
 use Doctrine\DBAL\Connection;
-use IamPersistent\SimpleShop\Entity\Invoice;
-use IamPersistent\SimpleShop\Interactor\FindInvoiceByIdInterface;
+use OLPS\SimpleShop\Entity\Invoice;
+use OLPS\SimpleShop\Interactor\FindInvoiceByIdInterface;
 
 final class FindInvoiceById extends DBalCommon implements FindInvoiceByIdInterface
 {
-    /** @var \IamPersistent\SimpleShop\Interactor\DBal\GatherCategoryDataForProduct  */
+    /** @var \OLPS\SimpleShop\Interactor\DBal\GatherCategoryDataForProduct  */
     private $gatherCategories;
 
     public function __construct(Connection $connection)
