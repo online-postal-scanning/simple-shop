@@ -5,9 +5,8 @@ namespace Tests\Functional\Interactor\DBal;
 
 use DateTime;
 use Doctrine\DBAL\Connection;
-use FunctionalTester;
-use IamPersistent\SimpleShop\Entity\CreditCard;
-use IamPersistent\SimpleShop\Interactor\DBal\FindCardById;
+use OLPS\SimpleShop\Entity\CreditCard;
+use OLPS\SimpleShop\Interactor\DBal\FindCardById;
 
 class FindCardByIdCest
 {

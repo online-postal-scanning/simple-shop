@@ -5,3 +5,4 @@ composer.lock
 phinx.yml
 old-tests/_support/_generated
 vendor/
+/.phpunit.cache/

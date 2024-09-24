@@ -5,7 +5,7 @@ namespace OLPS\SimpleShop\Interactor\DBal;
 
 use OLPS\SimpleShop\Entity\CreditCard;
 use OLPS\SimpleShop\Interactor\ObjectHasId;
-use OLPS\SimpleShop\Interactor\PascalCase;
+use GetOffMyCase\PascalCase;
 use OLPS\SimpleShop\Interactor\SaveCardInterface;
 use Omnipay\Common\CreditCard as OmniCreditCard;
 

@@ -1,26 +1,26 @@
 <?php
 declare(strict_types=1);
 
-namespace Tests\Unit\Interactor;
+namespace Tests\Unit\OLPS\SimpleShop\Interactor;
 
-use IamPersistent\SimpleShop\Entity\Invoice;
-use IamPersistent\SimpleShop\Entity\InvoiceItem;
-use IamPersistent\SimpleShop\Interactor\TotalInvoice;
+use OLPS\SimpleShop\Entity\Invoice;
+use OLPS\SimpleShop\Entity\InvoiceItem;
+use OLPS\SimpleShop\Interactor\TotalInvoice;
 use Money\Currency;
 use Money\Money;
-use UnitTester;
+use PHPUnit\Framework\TestCase;
 
-class TotalInvoiceCest
+class TotalInvoiceTest extends TestCase
 {
     /** @var TotalInvoice */
     private $totalInvoice;
 
-    public function __construct()
+    protected function setUp(): void
     {
-        $this->totalInvoice = (new TotalInvoice());
+        $this->totalInvoice = new TotalInvoice();
     }
 
-    public function testHandle(UnitTester $I)
+    public function testHandle()
     {
         $invoice = (new Invoice())
             ->setCurrency(new Currency('USD'))
@@ -35,8 +35,8 @@ class TotalInvoiceCest
 
         $this->totalInvoice->handle($invoice);
 
-        $I->assertEquals(Money::USD(10430), $invoice->getSubtotal());
-        $I->assertEquals(Money::USD(28), $invoice->getTaxes());
-        $I->assertEquals(Money::USD(10458), $invoice->getTotal());
+        $this->assertEquals(Money::USD(10430), $invoice->getSubtotal());
+        $this->assertEquals(Money::USD(28), $invoice->getTaxes());
+        $this->assertEquals(Money::USD(10458), $invoice->getTotal());
     }
 }

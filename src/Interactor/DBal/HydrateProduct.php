@@ -3,8 +3,9 @@ declare(strict_types=1);
 
 namespace OLPS\SimpleShop\Interactor\DBal;
 
-use AMB\Interactor\Db\SQLToBool;
-use IamPersistent\Money\Interactor\JsonToMoney;
+
+use OLPS\Money\JsonToMoney;
+use OLPS\SimpleShop\Interactor\DBal\SQLToBool;
 use OLPS\SimpleShop\Entity\Product;
 
 final class HydrateProduct

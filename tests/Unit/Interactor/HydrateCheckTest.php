@@ -1,24 +1,26 @@
 <?php
 declare(strict_types=1);
 
-namespace Tests\Unit\Interactor;
+namespace Tests\Unit\OLPS\SimpleShop\Interactor;
 
 use DateTime;
-use IamPersistent\SimpleShop\Entity\Check;
-use IamPersistent\SimpleShop\Interactor\DBal\HydrateCheck;
+use OLPS\SimpleShop\Entity\Check;
+use OLPS\SimpleShop\Interactor\DBal\HydrateCheck;
+use PHPUnit\Framework\TestCase;
 use UnitTester;
 
-class HydrateCheckCest
+class HydrateCheckTest extends TestCase
 {
-    public function test__invoke(UnitTester $I)
+    public function testInvoke()
     {
         $checkData = [
             'check_number' => '2048',
             'date'         => '2019-04-20',
             'id'           => 42,
         ];
-        $check = (new HydrateCheck())($checkData);
-        $I->assertEquals($this->expectedCheck(), $check);
+        $hydrateCheck = new HydrateCheck();
+        $check = $hydrateCheck($checkData);
+        $this->assertEquals($this->expectedCheck(), $check);
     }
 
     private function expectedCheck(): Check

@@ -5,12 +5,11 @@ namespace Tests\Functional\Interactor\DBal;
 
 use DateTime;
 use Doctrine\DBAL\Connection;
-use IamPersistent\SimpleShop\Entity\CreditCard;
-use IamPersistent\SimpleShop\Entity\Invoice;
-use IamPersistent\SimpleShop\Entity\InvoiceItem;
-use IamPersistent\SimpleShop\Entity\Paid;
-use IamPersistent\SimpleShop\Interactor\DBal\InsertInvoice;
-use FunctionalTester;
+use OLPS\SimpleShop\Entity\CreditCard;
+use OLPS\SimpleShop\Entity\Invoice;
+use OLPS\SimpleShop\Entity\InvoiceItem;
+use OLPS\SimpleShop\Entity\Paid;
+use OLPS\SimpleShop\Interactor\DBal\InsertInvoice;
 use Money\Currency;
 use Money\Money;
 

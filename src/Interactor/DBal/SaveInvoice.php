@@ -5,7 +5,7 @@ namespace OLPS\SimpleShop\Interactor\DBal;
 
 use Doctrine\DBAL\Connection;
 use Exception;
-use IamPersistent\Money\Interactor\MoneyToJson;
+use OLPS\Money\MoneyToJson;
 use OLPS\SimpleShop\Entity\Invoice;
 use OLPS\SimpleShop\Entity\Paid;
 use OLPS\SimpleShop\Interactor\ObjectHasId;

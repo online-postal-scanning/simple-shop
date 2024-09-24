@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace OLPS\SimpleShop\Interactor\DBal;
 
 use DateTime;
+use OLPS\SimpleShop\Interactor\DBal\SQLToBool;
 use OLPS\SimpleShop\Entity\CreditCard;
 
 final class HydrateCreditCard

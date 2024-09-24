@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace OLPS\SimpleShop\Interactor\DBal;
 
-use IamPersistent\Money\Interactor\MoneyToJson;
+use OLPS\Money\MoneyToJson;
 use OLPS\SimpleShop\Entity\Product;
 use OLPS\SimpleShop\Interactor\ObjectHasId;
 use OLPS\SimpleShop\Interactor\SaveProductInterface;

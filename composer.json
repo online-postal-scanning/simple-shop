@@ -10,6 +10,7 @@
     "ext-json": "*",
     "ext-yaml": "*",
     "doctrine/dbal": "^2.12.1",
+    "iampersistent/get-off-my-case": "^1.2.0",
     "olps/money-helpers": "^v1.0.0",
     "moneyphp/money": "^v4.0.5",
     "psr/container": "^1.0 || ^2.0",
@@ -17,9 +18,7 @@
     "robmorgan/phinx": "^0.15.4"
   },
   "require-dev": {
-    "pestphp/pest": "^2.25",
-    "mockery/mockery": "^1.6",
-    "phpunit/phpunit": "^10.5"
+    "phpunit/phpunit": "^11"
   },
   "minimum-stability": "stable",
   "autoload": {

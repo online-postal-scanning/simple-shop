@@ -4,15 +4,14 @@ declare(strict_types=1);
 namespace Tests\Functional\Interactor\DBal;
 
 use DateTime;
-use FunctionalTester;
-use IamPersistent\SimpleShop\Entity\Check;
-use IamPersistent\SimpleShop\Interactor\DBal\InsertCheck;
+use OLPS\SimpleShop\Entity\Check;
+use OLPS\SimpleShop\Interactor\DBal\InsertCheck;
 
 class InsertCheckCest
 {
     /** @var \Doctrine\DBAL\Connection */
     private $connection;
-    /** @var \IamPersistent\SimpleShop\Interactor\DBal\InsertCheck */
+    /** @var \OLPS\SimpleShop\Interactor\DBal\InsertCheck */
     private $insertCheck;
 
     public function _after(FunctionalTester $I)

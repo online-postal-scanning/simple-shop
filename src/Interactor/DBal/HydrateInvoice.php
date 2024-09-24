@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace OLPS\SimpleShop\Interactor\DBal;
 
 use DateTime;
-use IamPersistent\Money\Interactor\JsonToMoney;
+use OLPS\Money\JsonToMoney;
 use OLPS\SimpleShop\Entity\Invoice;
 use OLPS\SimpleShop\Entity\InvoiceItem;
 use Money\Currency;

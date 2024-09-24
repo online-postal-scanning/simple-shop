@@ -5,7 +5,7 @@ namespace OLPS\SimpleShop\Interactor\DBal;
 
 use OLPS\SimpleShop\Entity\CreditCard;
 use OLPS\SimpleShop\Interactor\InsertCardInterface;
-use OLPS\SimpleShop\Interactor\PascalCase;
+use GetOffMyCase\PascalCase;
 use Omnipay\Common\CreditCard as OmniCreditCard;
 
 final class InsertCard extends DBalCommon implements InsertCardInterface
