@@ -2,7 +2,7 @@
 
 use Phinx\Migration\AbstractMigration;
 
-class AddProductToInvoiceItems extends AbstractMigration
+class CreateProductCategoryJoinTable extends AbstractMigration
 {
     /**
      * Change Method.
@@ -31,8 +31,11 @@ class AddProductToInvoiceItems extends AbstractMigration
      */
     public function change()
     {
-        $this->table('invoice_items')
-            ->addColumn('product_id', 'integer', ['signed' => false, 'null' => true])
-            ->update();
+        $this->table('product_categories')
+            ->addColumn('category_id', 'integer', ['signed' => false, 'null' => false])
+            ->addForeignKey('category_id', 'categories', 'id')
+            ->addColumn('product_id', 'integer', ['signed' => false, 'null' => false])
+            ->addForeignKey('product_id', 'products', 'id')
+            ->create();
     }
 }
