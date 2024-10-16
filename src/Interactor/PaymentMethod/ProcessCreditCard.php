@@ -3,60 +3,58 @@ declare(strict_types=1);
 
 namespace OLPS\SimpleShop\Interactor\PaymentMethod;
 
-use DateTime;
 use Exception;
 use OLPS\SimpleShop\Entity\CreditCard;
 use OLPS\SimpleShop\Entity\Paid;
 use OLPS\SimpleShop\Entity\PaymentMethodInterface;
+use OLPS\SimpleShop\Entity\PayumContext;
 use OLPS\SimpleShop\Exception\PaymentProcessingError;
 use OLPS\SimpleShop\Interactor\ProcessPaymentInterface;
 use Money\Money;
-use Omnipay\Common\GatewayInterface;
-use Omnipay\Common\Message\ResponseInterface;
+use Payum\Core\Reply\HttpPostRedirect;
+use Payum\Core\Reply\HttpRedirect;
+use Payum\Core\Request\Capture;
+use Payum\Core\Request\GetHumanStatus;
 
 final class ProcessCreditCard implements ProcessPaymentInterface
 {
-    private $gateway;
-
-    public function __construct(GatewayInterface $gateway)
-    {
-        $this->gateway = $gateway;
+    public function __construct(
+        private readonly PayumContext $context,
+    ) {
     }
 
-    public function handle(Money $amount, PaymentMethodInterface $card): Paid
+    public function handle(Money $amount, CreditCard|PaymentMethodInterface $paymentMethod): Paid
     {
-        $options = $this->extractCreditCardOptions($card);
-        $options['money'] = $amount;
-
         try {
-            /** @var ResponseInterface $response */
-            $response = $this->gateway->purchase($options)->send();
-            if ($response->isSuccessful()) {
-                return (new Paid())
-                    ->setAmount($amount)
-                    ->setAuthorizationCode($response->getCode())
-                    ->setPaymentMethod($card)
-                    ->setDate(new DateTime());
-            } elseif ($response->isRedirect()) {
-                $response->redirect();
-            } else {
-                $this->throwErrorFromResponse($response);
+            $payment = $this->context->createPayment($amount, $paymentMethod);
+            $gateway = $this->context->getGateway();
+
+            if ($reply = $gateway->execute(new Capture($payment), true)) {
+                if ($reply instanceof HttpRedirect) {
+                    throw new PaymentProcessingError('Redirect not supported in this implementation');
+                } elseif ($reply instanceof HttpPostRedirect) {
+                    throw new PaymentProcessingError('Redirect not supported in this implementation');
+                }
+
+                throw new PaymentProcessingError('Unsupported reply', null, $reply);
             }
+            $gateway->execute($status = new GetHumanStatus($payment));
+            $firstModel = $status->getFirstModel();
+
+            return (new Paid())
+                ->setAmount($amount)
+                ->setAuthorizationCode($response->getReference())
+                ->setPaymentMethod($paymentMethod)
+                ->setDate(new DateTime());
+
         } catch (Exception $e) {
             throw new PaymentProcessingError($e->getMessage(), (int) $e->getCode(), $e->getPrevious());
         }
     }
 
-    private function extractCreditCardOptions(CreditCard $card): array
+    private function throwErrorFromResponse(RequestInterface $response): void
     {
-        if ($reference = $card->getCardReference()) {
-            return ['cardReference' => $reference];
-        }
-    }
-
-    private function throwErrorFromResponse(ResponseInterface $response): void
-    {
-        $message = "The bank responsed with: {$response->getMessage()}";
-        throw new PaymentProcessingError($message, (int) $response->getCode());
+        $message = "The payment gateway responded with: {$response->getStatus()}";
+        throw new PaymentProcessingError($message, $response->getStatusCode());
     }
 }
