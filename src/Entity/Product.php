@@ -5,7 +5,7 @@ namespace OLPS\SimpleShop\Entity;
 
 use Money\Money;
 
-final class Product
+class Product
 {
     /** @var bool */
     private $active;

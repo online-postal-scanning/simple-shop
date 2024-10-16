@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace OLPS\SimpleShop\Entity;
 
-final class BalanceAdjustment implements PaymentMethodInterface
+class BalanceAdjustment implements PaymentMethodInterface
 {
     public function getDisplaySummary(): string
     {

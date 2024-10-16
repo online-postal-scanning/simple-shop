@@ -5,7 +5,7 @@ namespace OLPS\SimpleShop\Entity;
 
 use DateTime;
 
-final class CreditCard implements PaymentMethodInterface
+class CreditCard implements PaymentMethodInterface
 {
     /** @var bool */
     private $active;

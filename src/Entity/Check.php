@@ -5,7 +5,7 @@ namespace OLPS\SimpleShop\Entity;
 
 use DateTime;
 
-final class Check implements PaymentMethodInterface
+class Check implements PaymentMethodInterface
 {
     /** @var string|null */
     private $checkNumber;

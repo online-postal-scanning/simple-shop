@@ -6,7 +6,7 @@ namespace OLPS\SimpleShop\Entity;
 use DateTime;
 use Money\Money;
 
-final class Paid
+class Paid
 {
     /** @var Money */
     private $amount;

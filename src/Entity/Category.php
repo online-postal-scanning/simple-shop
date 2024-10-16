@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace OLPS\SimpleShop\Entity;
 
-final class Category
+class Category
 {
     /** @var string */
     private $name;

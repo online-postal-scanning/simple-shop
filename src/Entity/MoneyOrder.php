@@ -5,7 +5,7 @@ namespace OLPS\SimpleShop\Entity;
 
 use DateTime;
 
-final class MoneyOrder implements PaymentMethodInterface
+class MoneyOrder implements PaymentMethodInterface
 {
     /** @var DateTime|null */
     private $date;

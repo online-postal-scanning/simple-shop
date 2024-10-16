@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace OLPS\SimpleShop\Entity;
 
-final class Cash implements PaymentMethodInterface
+class Cash implements PaymentMethodInterface
 {
     public function getDisplaySummary(): string
     {
