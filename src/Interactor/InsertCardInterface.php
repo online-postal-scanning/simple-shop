@@ -7,5 +7,5 @@ use OLPS\SimpleShop\Entity\CreditCard;
 
 interface InsertCardInterface
 {
-    public function insert(CreditCard $card): bool;
+    public function insert(CreditCard $creditCard): bool;
 }

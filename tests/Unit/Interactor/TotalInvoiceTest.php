@@ -12,8 +12,7 @@ use PHPUnit\Framework\TestCase;
 
 class TotalInvoiceTest extends TestCase
 {
-    /** @var TotalInvoice */
-    private $totalInvoice;
+    private TotalInvoice $totalInvoice;
 
     protected function setUp(): void
     {
