@@ -7,7 +7,6 @@ use DateTime;
 use OLPS\SimpleShop\Entity\Check;
 use OLPS\SimpleShop\Interactor\DBal\HydrateCheck;
 use PHPUnit\Framework\TestCase;
-use UnitTester;
 
 class HydrateCheckTest extends TestCase
 {

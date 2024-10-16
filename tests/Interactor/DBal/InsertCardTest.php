@@ -1,19 +1,18 @@
 <?php
 declare(strict_types=1);
 
-namespace Tests\Functional\Interactor\DBal;
+namespace Tests\Functional\OLPS\SimpleShop\Interactor\DBal;
 
 use DateTime;
 use Doctrine\DBAL\Connection;
 use OLPS\SimpleShop\Entity\CreditCard;
 use OLPS\SimpleShop\Interactor\DBal\InsertCard;
+use PHPUnit\Framework\TestCase;
 
-class InsertCardCest
+class InsertCardTest extends TestCase
 {
-    /** @var Connection */
-    private $connection;
-    /** @var InsertCard */
-    private $insertCard;
+    private Connection $connection;
+    private InsertCard $insertCard;
 
     public function _after(FunctionalTester $I)
     {

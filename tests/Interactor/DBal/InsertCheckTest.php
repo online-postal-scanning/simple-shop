@@ -1,16 +1,17 @@
 <?php
 declare(strict_types=1);
 
-namespace Tests\Functional\Interactor\DBal;
+namespace Tests\Functional\OLPS\SimpleShop\Interactor\DBal;
 
 use DateTime;
+use Doctrine\DBAL\Connection;
 use OLPS\SimpleShop\Entity\Check;
 use OLPS\SimpleShop\Interactor\DBal\InsertCheck;
+use PHPUnit\Framework\TestCase;
 
-class InsertCheckCest
+class InsertCheckTest extends TestCase
 {
-    /** @var \Doctrine\DBAL\Connection */
-    private $connection;
+    private Connection $connection;
     /** @var \OLPS\SimpleShop\Interactor\DBal\InsertCheck */
     private $insertCheck;
 

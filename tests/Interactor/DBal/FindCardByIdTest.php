@@ -1,19 +1,18 @@
 <?php
 declare(strict_types=1);
 
-namespace Tests\Functional\Interactor\DBal;
+namespace Tests\Functional\OLPS\SimpleShop\Interactor\DBal;
 
 use DateTime;
 use Doctrine\DBAL\Connection;
 use OLPS\SimpleShop\Entity\CreditCard;
 use OLPS\SimpleShop\Interactor\DBal\FindCardById;
+use PHPUnit\Framework\TestCase;
 
-class FindCardByIdCest
+class FindCardByIdTest extends TestCase
 {
-    /** @var Connection */
-    private $connection;
-    /** @var FindCardById */
-    private $findCardById;
+    private Connection $connection;
+    private FindCardById $findCardById;
 
     public function _after(FunctionalTester $I)
     {

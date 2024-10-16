@@ -1,34 +1,33 @@
 <?php
 declare(strict_types=1);
 
-namespace Tests\Functional\Interactor\DBal;
+namespace Tests\Functional\OLPS\SimpleShop\Interactor\DBal;
 
 use DateTime;
 use Doctrine\DBAL\Connection;
+use Money\Currency;
+use Money\Money;
 use OLPS\SimpleShop\Entity\CreditCard;
 use OLPS\SimpleShop\Entity\Invoice;
 use OLPS\SimpleShop\Entity\InvoiceItem;
 use OLPS\SimpleShop\Entity\Paid;
 use OLPS\SimpleShop\Interactor\DBal\InsertInvoice;
-use Money\Currency;
-use Money\Money;
+use PHPUnit\Framework\TestCase;
 
-class InsertInvoiceCest
+class InsertInvoiceTest extends TestUnit
 {
-    /** @var Connection */
-    private $connection;
-    /** @var InsertInvoice */
-    private $insertInvoice;
+    private Connection $connection;
+    private InsertInvoice $insertInvoice;
 
-    public function _after(FunctionalTester $I)
+    protected function tearDown(): void
     {
-        $I->dropDatabase();
+        $this->dropDatabase();
     }
 
-    public function _before(FunctionalTester $I)
+    protected function setUp(): void
     {
-        $this->connection = $I->getDBalConnection();
-        $I->setUpDatabase();
+        $this->connection = $this->getDBalConnection();
+        $this->setUpDatabase();
         $this->insertInvoice = new InsertInvoice($this->connection);
     }
 
@@ -63,9 +62,9 @@ class InsertInvoiceCest
         $invoiceData = $this->connection->fetchAll('SELECT * FROM invoices');
         $invoiceItemsData = $this->connection->fetchAll('SELECT * FROM invoice_items');
         $paidData = $this->connection->fetchAll('SELECT * FROM invoice_paid');
-        $I->assertEquals($this->expectedInvoiceData(), $invoiceData);
-        $I->assertEquals($this->expectedInvoiceItemsData(), $invoiceItemsData);
-        $I->assertEquals($this->expectedPaidData(), $paidData);
+        $this->assertEquals($this->expectedInvoiceData(), $invoiceData);
+        $this->assertEquals($this->expectedInvoiceItemsData(), $invoiceItemsData);
+        $this->assertEquals($this->expectedPaidData(), $paidData);
     }
 
     private function expectedInvoiceData(): array
