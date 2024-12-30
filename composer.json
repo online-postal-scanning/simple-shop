@@ -9,7 +9,7 @@
     "ext-pdo": "*",
     "ext-json": "*",
     "ext-yaml": "*",
-    "doctrine/dbal": "^2.12.1",
+    "doctrine/dbal": "^2.12.1 | ^3",
     "iampersistent/get-off-my-case": "^1.2.0",
     "olps/money-helpers": "^v1.0.0",
     "moneyphp/money": "^v4.0.5",
