@@ -14,7 +14,6 @@
     "olps/money-helpers": "^v1.0.0",
     "moneyphp/money": "^v4.0.5",
     "payum/core": "^1.7.5",
-    "psr/container": "^1.0 || ^2.0",
     "robmorgan/phinx": "^0.15 || ^0.16"
   },
   "require-dev": {
