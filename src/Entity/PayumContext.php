@@ -15,16 +15,17 @@ use Payum\Core\Storage\StorageInterface;
 
 class PayumContext
 {
+    const GATEWAY_NAME = 'simpleShop';
+    
     public function __construct(
         private Payum $payum,
-        private string $gatewayName,
     ) {
     }
 
     public function createAuthorizeToken($model, $afterPath, array $afterParameters = []): TokenInterface
     {
         return $this->payum->getTokenFactory()->createAuthorizeToken(
-            $this->gatewayName,
+            self::GATEWAY_NAME,
             $model,
             $afterPath,
             $afterParameters
@@ -34,7 +35,7 @@ class PayumContext
     public function createCaptureToken($model, $afterPath, array $afterParameters = []): TokenInterface
     {
         return $this->payum->getTokenFactory()->createCaptureToken(
-            $this->gatewayName,
+            self::GATEWAY_NAME,
             $model,
             $afterPath,
             $afterParameters,
@@ -44,7 +45,7 @@ class PayumContext
     public function createNotifyToken($model = null): TokenInterface
     {
         return $this->payum->getTokenFactory()->createNotifyToken(
-            $this->gatewayName,
+            self::GATEWAY_NAME,
             $model
         );
     }
@@ -70,7 +71,7 @@ class PayumContext
     public function createPayoutToken($model, $afterPath, array $afterParameters = []): TokenInterface
     {
         return $this->payum->getTokenFactory()->createPayoutToken(
-            $this->gatewayName,
+            self::GATEWAY_NAME,
             $model,
             $afterPath,
             $afterParameters
@@ -80,7 +81,7 @@ class PayumContext
     public function createRefundToken($model, $afterPath = null, array $afterParameters = []): TokenInterface
     {
         return $this->payum->getTokenFactory()->createRefundToken(
-            $this->gatewayName,
+            self::GATEWAY_NAME,
             $model,
             $afterPath,
             $afterParameters
@@ -94,12 +95,12 @@ class PayumContext
 
     public function getGateway(): GatewayInterface
     {
-        return $this->payum->getGateway($this->gatewayName);
+        return $this->payum->getGateway(self::GATEWAY_NAME);
     }
 
     public function getGatewayName(): string
     {
-        return $this->gatewayName;
+        return self::GATEWAY_NAME;
     }
 
     public function getStorage(string $class): StorageInterface
