@@ -14,7 +14,8 @@
     "olps/money-helpers": "^v1.0.0",
     "moneyphp/money": "^v4.0.5",
     "payum/core": "^1.7.5",
-    "robmorgan/phinx": "^0.15 || ^0.16"
+    "robmorgan/phinx": "^0.15 || ^0.16",
+    "php-http/message-factory": "^1.1"
   },
   "require-dev": {
     "php-http/guzzle7-adapter": "^1.0",

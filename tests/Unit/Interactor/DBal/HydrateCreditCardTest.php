@@ -13,7 +13,7 @@ class HydrateCreditCardTest extends TestCase
     public function testInvoke()
     {
         $creditCardData = [
-            'active' => 1,
+            'is_active' => 1,
             'brand' => 'Visa',
             'card_number' => '************4242',
             'card_reference' => '8675309',
