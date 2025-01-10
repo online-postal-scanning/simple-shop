@@ -6,7 +6,6 @@ namespace OLPS\SimpleShop\Interactor\DBal;
 use OLPS\SimpleShop\Entity\CreditCard;
 use OLPS\SimpleShop\Interactor\InsertCardInterface;
 use GetOffMyCase\PascalCase;
-use Omnipay\Common\CreditCard as OmniCreditCard;
 
 final class InsertCard extends DBalCommon implements InsertCardInterface
 {
@@ -19,16 +18,19 @@ final class InsertCard extends DBalCommon implements InsertCardInterface
 
     private function persist(CreditCard $creditCard)
     {
-        $omniCard = new OmniCreditCard(['number' => $creditCard->getCardNumber()]);
+        $cardNumber = $creditCard->getCardNumber();
+        $lastFour = substr($cardNumber, -4);
+        $maskedNumber = str_repeat('X', strlen($cardNumber) - 4) . $lastFour;
 
         $data = [
             'brand'           => (new PascalCase)($creditCard->getBrand()),
-            'card_number'     => $omniCard->getNumberMasked(),
+            'card_number'     => $maskedNumber,
             'card_reference'  => $creditCard->getCardReference(),
             'city'            => $creditCard->getCity(),
             'country'         => $creditCard->getCountry(),
             'expiration_date' => $creditCard->getExpirationDate()->format('Y-m-d'),
-            'last_four'       => $omniCard->getNumberLastFour(),
+            'is_active'       => $creditCard->isActive(),
+            'last_four'       => $lastFour,
             'name_on_card'    => $creditCard->getNameOnCard(),
             'owner_id'        => $creditCard->getOwnerId(),
             'post_code'       => $creditCard->getPostCode(),
@@ -37,12 +39,12 @@ final class InsertCard extends DBalCommon implements InsertCardInterface
             'street_2'        => $creditCard->getStreet2(),
             'title'           => $creditCard->getTitle(),
         ];
+
         $response = $this->connection->insert('credit_cards', $data);
         if (1 === $response) {
             $id = $this->connection->lastInsertId();
             $creditCard->setId($id);
-        } else {
-
+            $creditCard->setLastFour($lastFour);
         }
     }
 }

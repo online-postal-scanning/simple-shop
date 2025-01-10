@@ -14,7 +14,7 @@ final class HydrateCreditCard
         $sqlToBool = (new SQLToBool());
 
         return (new CreditCard())
-            ->setActive($sqlToBool($cardData['active']))
+            ->setActive($sqlToBool($cardData['is_active']))
             ->setBrand($cardData['brand'])
             ->setCardNumber($cardData['card_number'])
             ->setCardReference($cardData['card_reference'])

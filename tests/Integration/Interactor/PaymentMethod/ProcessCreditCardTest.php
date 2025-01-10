@@ -57,7 +57,6 @@ class ProcessCreditCardTest extends TestCase
 
         $payumContext = new PayumContext(
             $payum,
-            'aGateway'
         );
 
         $creditCard = (new CreditCard())
