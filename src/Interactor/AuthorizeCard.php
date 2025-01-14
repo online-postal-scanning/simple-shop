@@ -4,57 +4,52 @@ declare(strict_types=1);
 
 namespace OLPS\SimpleShop\Interactor;
 
-use DateTime;
 use OLPS\SimpleShop\Entity\CreditCard;
-use OLPS\SimpleShop\Interactor\DBal\InsertCard;
-use Omnipay\Common\CreditCard as OmniCreditCard;
-use Omnipay\Common\GatewayInterface;
-use Omnipay\Common\Message\ResponseInterface;
+use OLPS\SimpleShop\Entity\PayumContext;
+use OLPS\SimpleShop\Interactor\InsertCardInterface;
+use Payum\Core\Model\CreditCard as PayumCreditCard;
+use Payum\Core\Request\Authorize;
 
 final class AuthorizeCard
 {
-    private $gateway;
+    private $payumContext;
     private $insertCard;
     private $response;
 
-    public function __construct(GatewayInterface $gateway, InsertCard $insertCard)
+    public function __construct(PayumContext $payumContext, InsertCardInterface $insertCard)
     {
-        $this->gateway = $gateway;
+        $this->payumContext = $payumContext;
         $this->insertCard = $insertCard;
     }
 
-    public function getResponse(): ResponseInterface
+    public function getResponse(): ?object
     {
         return $this->response;
     }
 
-    public function handle(OmniCreditCard $omniCreditCard, $ownerId): ?CreditCard
+    public function handle(PayumCreditCard $payumCreditCard, $ownerId): ?CreditCard
     {
-        $options = [
-            'card' => $omniCreditCard,
-        ];
-        $this->response = $this->gateway->createCard($options)->send();
+        try {
+            $authorize = new Authorize($payumCreditCard);
+            $this->payumContext->getGateway()->execute($authorize);
 
-        if ($this->response->isSuccessful()) {
-            $fullName = implode(' ', [$omniCreditCard->getFirstName(), $omniCreditCard->getLastName()]);
-            $creditCard = (new CreditCard())
-                ->setActive(true)
-                ->setBrand($omniCreditCard->getBrand())
-                ->setCardNumber($omniCreditCard->getNumberMasked())
-                ->setCardReference($this->response->getCardReference())
-                ->setCity($omniCreditCard->getBillingCity())
-                ->setCountry($omniCreditCard->getBillingCountry())
-                ->setExpirationDate(new DateTime($omniCreditCard->getExpiryDate('Y-m-d')))
-                ->setLastFour($omniCreditCard->getNumberLastFour())
-                ->setNameOnCard($fullName)
-                ->setOwnerId($ownerId)
-                ->setPostCode($omniCreditCard->getBillingPostcode())
-                ->setState($omniCreditCard->getBillingState())
-                ->setStreet1($omniCreditCard->getBillingAddress1())
-                ->setStreet2($omniCreditCard->getBillingAddress2());
-            $this->insertCard->insert($creditCard);
+            if ($authorize->getModel() === $payumCreditCard) {
+                $fullName = $payumCreditCard->getHolder();
+                $creditCard = (new CreditCard())
+                    ->setActive(true)
+                    ->setBrand($payumCreditCard->getBrand())
+                    ->setCardNumber($payumCreditCard->getMaskedNumber())
+                    ->setCardReference($payumCreditCard->getToken())
+                    ->setExpirationDate($payumCreditCard->getExpireAt())
+                    ->setLastFour(substr($payumCreditCard->getMaskedNumber(), -4))
+                    ->setNameOnCard($fullName)
+                    ->setOwnerId($ownerId);
+                $this->insertCard->insert($creditCard);
 
-            return $creditCard;
+                return $creditCard;
+            }
+        } catch (\Exception $e) {
+            // Authorization failed
         }
 
         return null;

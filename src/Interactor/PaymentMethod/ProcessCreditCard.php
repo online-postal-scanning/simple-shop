@@ -36,16 +36,16 @@ final class ProcessCreditCard implements ProcessPaymentInterface
                     throw new PaymentProcessingError('Redirect not supported in this implementation');
                 }
 
-                throw new PaymentProcessingError('Unsupported reply', null, $reply);
+                throw new PaymentProcessingError("Unsupported reply: $reply");
             }
             $gateway->execute($status = new GetHumanStatus($payment));
             $firstModel = $status->getFirstModel();
 
             return (new Paid())
                 ->setAmount($amount)
-                ->setAuthorizationCode($response->getReference())
+                ->setAuthorizationCode($firstModel->getNumber())
                 ->setPaymentMethod($paymentMethod)
-                ->setDate(new DateTime());
+                ->setDate(new \DateTime());
 
         } catch (Exception $e) {
             throw new PaymentProcessingError($e->getMessage(), (int) $e->getCode(), $e->getPrevious());
