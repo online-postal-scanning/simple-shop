@@ -10,8 +10,12 @@ use OLPS\SimpleShop\Entity\PayumContext;
 use OLPS\SimpleShop\Interactor\PaymentMethod\ProcessCreditCard;
 use Payum\Core\Bridge\PlainPhp\Security\TokenFactory;
 use Payum\Core\Model\Payment;
+use Payum\Core\Payum;
 use Payum\Core\PayumBuilder;
+use Payum\Core\Registry\RegistryInterface;
 use Payum\Core\Registry\SimpleRegistry;
+use Payum\Core\Security\GenericTokenFactoryInterface;
+use Payum\Core\Security\HttpRequestVerifierInterface;
 use Payum\Core\Storage\FilesystemStorage;
 use Payum\Offline\OfflineGatewayFactory;
 use PHPUnit\Framework\TestCase;
@@ -41,7 +45,7 @@ class ProcessCreditCardTest extends TestCase
 //        $payum = new Payum($registry, new HttpRequestVerifier($tokenStorage), $tokenFactory, $tokenStorage);
 
         $payumBuilder = (new PayumBuilder())
-            ->addGateway('simpleShop', [
+            ->addGateway('aGateway', [
                 'factory' => 'offline',
             ])
             ->setTokenFactory($tokenFactory)
@@ -65,5 +69,6 @@ class ProcessCreditCardTest extends TestCase
 
         $processCreditCard = new ProcessCreditCard($payumContext);
         $paid = $processCreditCard->handle($amount, $creditCard);
+$a = 0;
     }
 }
