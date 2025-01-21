@@ -10,17 +10,16 @@ use OLPS\SimpleShop\Interactor\DBal\InsertCard;
 use Omnipay\Common\CreditCard as OmniCreditCard;
 use Omnipay\Common\GatewayInterface;
 use Omnipay\Common\Message\ResponseInterface;
+use Omnipay\Merchantware\Message\CreateCardResponse;
 
 final class AuthorizeCard
 {
-    private $gateway;
-    private $insertCard;
-    private $response;
+    private CreateCardResponse $response;
 
-    public function __construct(GatewayInterface $gateway, InsertCard $insertCard)
-    {
-        $this->gateway = $gateway;
-        $this->insertCard = $insertCard;
+    public function __construct(
+        private GatewayInterface $gateway, 
+        private InsertCard $insertCard,
+    ) {
     }
 
     public function getResponse(): ResponseInterface
