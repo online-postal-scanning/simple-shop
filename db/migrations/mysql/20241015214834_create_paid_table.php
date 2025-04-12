@@ -13,6 +13,7 @@ class CreatePaidTable extends AbstractMigration
             ->addColumn('date', 'date')
             ->addColumn('payment_method_id', 'integer', ['signed' => false, 'null' => false])
             ->addColumn('payment_method_type', 'string', ['limit' => 255])
+            ->addTimestamps()
             ->create();
    }
 }

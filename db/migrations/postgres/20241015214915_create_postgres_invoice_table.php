@@ -21,6 +21,25 @@ final class CreatePostgresInvoiceTable extends AbstractMigration
             ->addColumn('tax_rate', 'decimal', ['precision' => 10, 'scale' => 4])
             ->addColumn('taxes', 'text')
             ->addColumn('total', 'text')
+            ->addTimestamps()
             ->create();
+
+        $schema = $this->getAdapter()->getOption('schema');
+        $this->execute("
+            CREATE OR REPLACE FUNCTION {$schema}.update_timestamp()
+            RETURNS TRIGGER AS $$
+            BEGIN
+                NEW.updated_at = CURRENT_TIMESTAMP;
+                RETURN NEW;
+            END;
+            $$ language 'plpgsql';
+        ");
+
+        $this->execute("
+            CREATE TRIGGER update_invoices_timestamp
+            BEFORE UPDATE ON invoices
+            FOR EACH ROW
+            EXECUTE FUNCTION {$schema}.update_timestamp();
+        ");
     }
 }

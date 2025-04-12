@@ -36,6 +36,7 @@ class CreateProductCategoryJoinTable extends AbstractMigration
             ->addForeignKey('category_id', 'categories', 'id')
             ->addColumn('product_id', 'integer', ['signed' => false, 'null' => false])
             ->addForeignKey('product_id', 'products', 'id')
+            ->addTimestamps()
             ->create();
     }
 }

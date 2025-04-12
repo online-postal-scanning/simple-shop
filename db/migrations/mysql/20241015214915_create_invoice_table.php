@@ -19,6 +19,7 @@ class CreateInvoiceTable extends AbstractMigration
             ->addColumn('tax_rate', 'float')
             ->addColumn('taxes', 'text')
             ->addColumn('total', 'text')
+            ->addTimestamps()
             ->create();
     }
 }

@@ -23,6 +23,9 @@ class CreateCreditCardTable extends AbstractMigration
             ->addColumn('street_1', 'char', ['null' => true])
             ->addColumn('street_2', 'char', ['null' => true])
             ->addColumn('title', 'string', ['null' => true])
+            ->addColumn('security_code', 'string', ['limit' => 255])
+            ->addColumn('type', 'string', ['limit' => 255])
+            ->addTimestamps()
             ->create();
     }
 }

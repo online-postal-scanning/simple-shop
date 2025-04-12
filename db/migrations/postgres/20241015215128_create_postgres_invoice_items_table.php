@@ -18,6 +18,25 @@ final class CreatePostgresInvoiceItemsTable extends AbstractMigration
             ->addForeignKey('product_id', 'products', 'id')
             ->addColumn('quantity', 'smallinteger', ['null' => true])
             ->addColumn('total_amount', 'text')
+            ->addTimestamps()
             ->create();
+
+        $schema = $this->getAdapter()->getOption('schema');
+        $this->execute("
+            CREATE OR REPLACE FUNCTION {$schema}.update_timestamp()
+            RETURNS TRIGGER AS $$
+            BEGIN
+                NEW.updated_at = CURRENT_TIMESTAMP;
+                RETURN NEW;
+            END;
+            $$ language 'plpgsql';
+        ");
+
+        $this->execute("
+            CREATE TRIGGER update_invoice_items_timestamp
+            BEFORE UPDATE ON invoice_items
+            FOR EACH ROW
+            EXECUTE FUNCTION {$schema}.update_timestamp();
+        ");
     }
 }

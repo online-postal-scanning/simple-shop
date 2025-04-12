@@ -8,7 +8,9 @@ class CreateCheckTable extends AbstractMigration
     {
         $this->table('checks')
             ->addColumn('check_number', 'string', ['limit' => 255])
+            ->addColumn('routing_number', 'string', ['limit' => 255])
             ->addColumn('date', 'date', ['null' => true])
+            ->addTimestamps()
             ->create();
     }
 }

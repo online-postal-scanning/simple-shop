@@ -8,6 +8,7 @@ class CreateCategoryTable extends AbstractMigration
     {
         $this->table('categories')
             ->addColumn('name', 'string', ['limit' => 255])
+            ->addTimestamps()
             ->create();
     }
 }

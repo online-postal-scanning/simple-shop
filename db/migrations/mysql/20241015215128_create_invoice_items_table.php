@@ -17,6 +17,7 @@ class CreateInvoiceItemsTable extends AbstractMigration
             ->addForeignKey('product_id', 'products', 'id')
             ->addColumn('quantity', 'integer', ['null' => true, 'signed' => false, 'limit' => MysqlAdapter::INT_SMALL])
             ->addColumn('total_amount', 'text')
+            ->addTimestamps()
             ->create();
    }
 }

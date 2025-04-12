@@ -9,6 +9,7 @@ class CreateMoneyOrderTable extends AbstractMigration
         $this->table('money_orders')
             ->addColumn('serial_number', 'string', ['limit' => 255])
             ->addColumn('date', 'date', ['null' => true])
+            ->addTimestamps()
             ->create();
     }
 }
