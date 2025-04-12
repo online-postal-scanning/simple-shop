@@ -22,7 +22,7 @@ final class FindInvoiceById extends DBalCommon implements FindInvoiceByIdInterfa
     {
         $sql = $this->sql($id);
         $statement = $this->connection->executeQuery($sql);
-        $invoiceData = $statement->fetch();
+        $invoiceData = $statement->fetchAssociative();
         if (empty($invoiceData)) {
             return null;
         }
@@ -91,7 +91,7 @@ SELECT
     p.payment_method_id,
     p.payment_method_type,
     c.check_number,
-    cc.active,
+    cc.is_active,
     cc.brand,
     cc.card_reference,
     cc.city,

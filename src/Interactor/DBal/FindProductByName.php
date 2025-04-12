@@ -29,7 +29,7 @@ SQL;
         if ($isActive) {
             $sql .= ' AND active = 1';
         }
-        $productData = $this->connection->fetchAssoc($sql);
+        $productData = $this->connection->fetchAssociative($sql);
         if (empty($productData)) {
             return null;
         }
