@@ -12,10 +12,21 @@ final class CreatePostgresProductTable extends AbstractMigration
             ->addColumn('active', 'boolean', ['default' => false])
             ->addColumn('description', 'string')
             ->addColumn('name', 'string')
-            ->addColumn('price', 'text')
+            ->addColumn('price', 'jsonb', ['null' => false])
             ->addColumn('taxable', 'boolean', ['default' => false])
             ->addTimestamps()
             ->create();
+
+        $this->execute("
+            ALTER TABLE products
+            ADD CONSTRAINT price_format_check
+            CHECK (
+                price ? 'amount' AND
+                price ? 'currency' AND
+                jsonb_typeof(price->'amount') = 'number' AND
+                jsonb_typeof(price->'currency') = 'string'
+            )
+        ");
 
         $schema = $this->getAdapter()->getOption('schema');
         $this->execute("
