@@ -6,7 +6,7 @@ use Phinx\Migration\AbstractMigration;
 
 final class CreatePostgresProductTable extends AbstractMigration
 {
-    public function change(): void
+    public function up(): void
     {
         $this->table('products')
             ->addColumn('active', 'boolean', ['default' => false])
@@ -45,5 +45,10 @@ final class CreatePostgresProductTable extends AbstractMigration
             FOR EACH ROW
             EXECUTE FUNCTION {$schema}.update_timestamp();
         ");
+    }
+
+    public function down(): void
+    {
+        $this->table('products')->drop()->save();
     }
 }

@@ -6,7 +6,7 @@ use Phinx\Migration\AbstractMigration;
 
 final class CreatePostgresCreditCardTable extends AbstractMigration
 {
-    public function change(): void
+    public function up(): void
     {
         $this->table('credit_cards')
             ->addColumn('brand', 'string', ['null' => true])
@@ -46,5 +46,10 @@ final class CreatePostgresCreditCardTable extends AbstractMigration
             FOR EACH ROW
             EXECUTE FUNCTION {$schema}.update_timestamp();
         ");
+    }
+
+    public function down(): void
+    {
+        $this->table('credit_cards')->drop()->save();
     }
 }

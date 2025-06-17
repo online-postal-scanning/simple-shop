@@ -6,7 +6,7 @@ use Phinx\Migration\AbstractMigration;
 
 final class CreatePostgresInvoiceTable extends AbstractMigration
 {
-    public function change(): void
+    public function up(): void
     {
         $this->table('invoices')
             ->addColumn('currency', 'string', ['limit' => 3])
@@ -74,5 +74,10 @@ final class CreatePostgresInvoiceTable extends AbstractMigration
             FOR EACH ROW
             EXECUTE FUNCTION {$schema}.update_timestamp();
         ");
+    }
+
+    public function down(): void
+    {
+        $this->table('invoices')->drop()->save();
     }
 }

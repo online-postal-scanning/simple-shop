@@ -6,7 +6,7 @@ use Phinx\Migration\AbstractMigration;
 
 final class CreatePostgresMoneyOrderTable extends AbstractMigration
 {
-    public function change(): void
+    public function up(): void
     {
         $this->table('money_orders')
             ->addColumn('serial_number', 'string', ['limit' => 255])
@@ -33,5 +33,10 @@ final class CreatePostgresMoneyOrderTable extends AbstractMigration
             FOR EACH ROW
             EXECUTE FUNCTION {$schema}.update_timestamp();
         ");
+    }
+
+    public function down(): void
+    {
+        $this->table('money_orders')->drop()->save();
     }
 }

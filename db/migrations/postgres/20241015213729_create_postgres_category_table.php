@@ -6,7 +6,7 @@ use Phinx\Migration\AbstractMigration;
 
 final class CreatePostgresCategoryTable extends AbstractMigration
 {
-    public function change(): void
+    public function up(): void
     {
         $this->table('categories')
             ->addColumn('name', 'string', ['limit' => 255])
@@ -30,5 +30,10 @@ final class CreatePostgresCategoryTable extends AbstractMigration
             FOR EACH ROW
             EXECUTE FUNCTION {$schema}.update_timestamp();
         ");
+    }
+
+    public function down(): void
+    {
+        $this->table('categories')->drop()->save();
     }
 }

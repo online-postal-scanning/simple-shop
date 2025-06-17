@@ -6,7 +6,7 @@ use Phinx\Migration\AbstractMigration;
 
 final class CreatePostgresProductCategoryJoinTable extends AbstractMigration
 {
-    public function change(): void
+    public function up(): void
     {
         $this->table('product_categories')
             ->addColumn('category_id', 'integer', ['null' => false])
@@ -33,5 +33,10 @@ final class CreatePostgresProductCategoryJoinTable extends AbstractMigration
             FOR EACH ROW
             EXECUTE FUNCTION {$schema}.update_timestamp();
         ");
+    }
+
+    public function down(): void
+    {
+        $this->table('product_categories')->drop()->save();
     }
 }
